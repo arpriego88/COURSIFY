@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.fine(params[:id])
+    @course = Course.find(params[:id])
   end
 
   def new
@@ -14,20 +14,34 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
 
-    if @post.save
+    if @course.save
+      flash[:success] = "Course Created"
+      redirect_to courses_path
+    else
+      flash[:danger] = "Please fill in every field"
+      render :new
+    end
+  end
+
+  def edit
+    @course = Course.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:id])
+
+    if @course.update(course_params)
+      flash[:success] = "Your course has been updated"
       redirect_to courses_path
     else
       render :new
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    @course = Course.find(params[:id])
+    @course.destroy
+    redirect_to courses_path
   end
 
   private
