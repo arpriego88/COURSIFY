@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'courses/index'
+
+  get 'courses/show'
+
+  get 'courses/new'
+
+  get 'courses/create'
+
+  get 'courses/edit'
+
+  get 'courses/update'
+
+  get 'courses/destroy'
+
   root 'pages#index'
   devise_for :users, :controllers => { registrations: 'registrations' }
 
