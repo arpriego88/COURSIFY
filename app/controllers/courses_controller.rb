@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.fine(params[:id])
+    @course = Course.find(params[:id])
   end
 
   def new
@@ -14,7 +14,6 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
 
-    if @post.save
       redirect_to courses_path
     else
       render :new
