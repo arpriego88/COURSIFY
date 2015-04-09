@@ -1,10 +1,34 @@
 class LessonsController < ApplicationController
-  def show
-  end
+  
+  before_action :authenticate_user!
 
-  def edit
+  def show
+
   end
 
   def new
+
   end
+
+  def create
+
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def destroy
+
+  end
+
+  private
+
+  def set_course
+    @course = Course.find(params[])
+
 end
