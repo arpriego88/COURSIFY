@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
 
+  root 'pages#index'
   
-  get 'lessons/show'
-
-  get 'lessons/edit'
-
-  get 'lessons/new'
+  resources :courses do
+    resources :lessons
+  end
 
   resources :exercises
-
-  resources :courses
-  root 'pages#index'
+  
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   get 'users/dashboard'

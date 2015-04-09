@@ -1,2 +1,36 @@
-<h1>Lessons#new</h1>
-<p>Find me in app/views/lessons/new.html.erb</p>
+<div class="row">
+  <div class="panel large-8 large-centered columns">
+  <h2 class="text-center">New Lesson</h2></br>
+  <%= form_for [@course, @lesson] do |f| %>
+
+      <div class="small-12 large-11 large-centered columns ">
+        <%= f.text_field :name, autofocus: true, placeholder: 'Name' %>
+      </div>
+
+      <div class="small-12 large-11 large-centered columns ">
+        <%= f.text_field :video_url, placeholder: 'Put your video here' %>
+      </div>
+
+       <div class="small-12 large-11 large-centered columns ">
+        <%= f.text_field :video_time, placeholder: "7:38" %>
+      </div>
+
+      <div class="small-12 large-11 large-centered columns ">
+        <%= f.text_area :content, autofocus: true, placeholder: 'Paste in your lesson content' %>
+      </div>
+
+      <div class="small-12 large-11 large-centered columns ">
+        <%= f.text_field :exercise_name, placeholder: "Exercise name" %>
+      </div>
+
+       <div class="small-12 large-11 large-centered columns ">
+        <%= f.text_area :exercise_content, placeholder: "Exercise content" %>
+      </div>
+
+      <div class="small-12 large-11 large-centered columns "> 
+        <%= f.submit "Create Lesson", class: "small button primary expand" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
