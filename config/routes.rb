@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
   
+  get 'lessons/show'
+
+  get 'lessons/edit'
+
+  get 'lessons/new'
+
   resources :exercises
 
   resources :courses
