@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  
+  resources :courses
   root 'pages#index'
   devise_for :users, :controllers => { registrations: 'registrations' }
 
