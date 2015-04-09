@@ -27,8 +27,8 @@ class LessonsController < ApplicationController
   end
 
   def update
-    @lesson = @course.lessons.update(lesson_params)
-    if @lesson.update(lesson_params)
+    @lesson = @course.lessons.find(params[:id])
+    if @lesson.update_attributes(lesson_params)
       flash[:success] = "Lesson updated!"
       redirect_to course_lesson_path
     else
