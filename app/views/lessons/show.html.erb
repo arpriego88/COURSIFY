@@ -1,2 +1,11 @@
-<h1>Lessons#show</h1>
-<p>Find me in app/views/lessons/show.html.erb</p>
+<iframe style="margin-top: 35px;" id="ytplayer" type="text/html" width="100%" height="480"
+  src="<%= embed_youtube_player_url(@lesson.video_url)%>"
+  frameborder="0">
+</iframe>
+<%= @lesson.name %>
+<%= @lesson.description %>
+<%= @lesson.content %>
+<%= @exercise_name %>
+<%= @exercise_content %>
+
+
