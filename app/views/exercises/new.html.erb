@@ -1,19 +1,17 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <div class="panel panel-default">
-      <div class="center panel-heading">
-        <h1>Add an Exercise!</h1>
-      </div>  
-      <div class="panel-body">
-        <%= form_for(@exercise) do |f| %>
+  <div class="panel large-8 large-centered columns">
+    <h2 class="text-center">Add a New Exercise!</h2></br>
+    <%= form_for(@exercise) do |f| %>
 
-          <%= f.label :response %>
-          <%= f.text_field :response, class: 'form-control' %>
-
-          </br>
-          <%= f.submit "Hazaaah!!!", class: "btn btn-block btn-primary" %>
-        <% end %>
+      <div class="small-12 large-11 large-centered columns ">
+        <%= f.text_field :response, autofocus: true %>
       </div>
-    </div>
+      
+      <div class="small-12 large-11 large-centered columns ">
+        <%= f.submit "Add Exercise!", class: "small button primary expand" %>
+      </div>
+
+    <% end %>
+
   </div>
 </div>
