@@ -4,11 +4,17 @@
   <%= @course.description %><br><hr>
   
   <% @course.lessons.each do |lesson| %>
-  <p><%= lesson.name %></p>
-  <p><%= lesson.description %></p><hr>
+  <p><%= link_to lesson.name, course_lesson_path(@course, lesson) %></p>
+  <p><%= lesson.description %></p>
+  <p><%= lesson.content %></p>
+
+  
+  <p><%= lesson.video_time %></p>
+  <hr>
   <% end %>
   
   <%= link_to 'Add Lesson', new_course_lesson_path(@course), class: "small button primary" %>
   <%= link_to 'Back', courses_path, class: "small button primary" %>
   </div>
 </div>
+
