@@ -1,11 +1,20 @@
-<h1>Edit Course</h1>
-<%= form_for @course do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<div class="row">
+  <div class="panel large-8 large-centered columns">
+    <h1 class="text-center">Edit Course</h1><br>
+    <%= form_for @course do |f| %>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+      <div class="small-12 large-11 large-centered columns">
+      <%= f.text_field :name, autofocus: true %>
+      </div>
 
-  <%= f.submit %>
+      <div class="small-12 large-11 large-centered columns">
+      <%= f.text_field :description, autofocus: true %>
+      </div>
+      
+      <div class="small-12 large-11 large-centered columns">
+      <%= f.submit "Save Changes", class: "small button primary expand" %>
+      </div>
 
-<% end %>
+    <% end %>
+  </div>
+</div>
