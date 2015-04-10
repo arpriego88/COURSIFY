@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
+ 
 
   def index
     @courses = Course.all
@@ -49,6 +50,6 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:name, :description)
+    params.require(:course).permit(:name, :description, :lesson_name, :lesson_description)
   end
 end
