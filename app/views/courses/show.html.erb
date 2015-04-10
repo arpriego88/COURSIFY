@@ -1,4 +1,14 @@
-<h1> Course </h1>
-<h2><%= @course.name %></h2>
-<p><%= @course.description %></p>
-<%= link_to 'Back', courses_path %>
+<div class="row">
+  <div class="large-8 large-centered columns">
+  <h2 class="text-center"><%= @course.name %></h2>
+  <%= @course.description %><br><hr>
+  
+  <% @course.lessons.each do |lesson| %>
+  <p><%= lesson.name %></p>
+  <p><%= lesson.description %></p><hr>
+  <% end %>
+  
+  <%= link_to 'Add Lesson', new_course_lesson_path(@course), class: "small button primary" %>
+  <%= link_to 'Back', courses_path, class: "small button primary" %>
+  </div>
+</div>
