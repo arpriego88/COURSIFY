@@ -1,14 +1,19 @@
 <div class="row">
   <div class="large-8 large-centered columns">
   <h2 class="text-center"><%= @course.name %></h2>
-  <%= @course.description %><br><hr>
+  <%= @course.description %>
+  <% if @course.complete? %>
+    <i class= "fa fa-check-circle-o" style= "color: green;"></i>
+  <% else %>
+    <i class= "fa fa-circle-o" style= "color: red;"></i>
+  <% end %>
+
+  <br><hr>
   
   <% @course.lessons.each do |lesson| %>
   <p><%= link_to lesson.name, course_lesson_path(@course, lesson) %></p>
   <p><%= lesson.description %></p>
-  <p><%= lesson.content %></p>
-
-  
+  <p><%= lesson.content %></p> 
   <p><%= lesson.video_time %></p>
   <hr>
   <% end %>
