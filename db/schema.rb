@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410215500) do
+ActiveRecord::Schema.define(version: 20150413225400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,25 @@ ActiveRecord::Schema.define(version: 20150410215500) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "course_id"
+    t.boolean  "complete"
   end
 
   add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
+
+  create_table "shirts", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "height"
+    t.integer  "collar"
+    t.integer  "weight"
+    t.integer  "chest"
+    t.integer  "arm"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -59,6 +75,12 @@ ActiveRecord::Schema.define(version: 20150410215500) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "height_ft"
+    t.integer  "height_in"
+    t.integer  "weight"
+    t.integer  "collar"
+    t.integer  "chest"
+    t.integer  "arm"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
