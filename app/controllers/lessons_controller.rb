@@ -30,7 +30,7 @@ class LessonsController < ApplicationController
     @lesson = @course.lessons.find(params[:id])
     if @lesson.update_attributes(lesson_params)
       flash[:success] = "Lesson updated!"
-      redirect_to course_lesson_path
+      redirect_to @course
     else
       flash[:alert] = "Something went wrong. Try again!"
       redirect_to edit_course_lesson_path
@@ -38,7 +38,9 @@ class LessonsController < ApplicationController
   end
 
   def destroy
-
+    @lesson = Lesson.find(params[:id])
+    @lesson.destroy
+    redirect_to @course
   end
 
   private

@@ -7,8 +7,12 @@ class Lesson < ActiveRecord::Base
     # Check all the lessons
     @lesson = self
     @course = @lesson.course
-    @completed = @course.lessons.map {|lesson| lesson.complete}
-    @course.complete = true unless @completed.include?(false)
+    @completed = @course.lessons.map {|lesson| lesson.complete?}
+    if @completed.include?(false)
+      @course.complete = false
+    else
+      @course.complete = true
+    end
     @course.save
   end
 end
