@@ -4,6 +4,13 @@
   frameborder="0">
 </iframe>
 </div>
+<span>
+  <% if @lesson.complete? %>
+    <i class= "fa fa-check-circle-o" style= "color: green;"></i>
+  <% else %>
+    <i class= "fa fa-circle-o" style= "color: red;"></i>
+  <% end %>
+</span>
 <span style="font-size: 1.5em;"><strong><%= @lesson.name %></strong></span> | <span><%= @lesson.video_time %></span>
 <p class="well"><%= @lesson.description %></p>
 
