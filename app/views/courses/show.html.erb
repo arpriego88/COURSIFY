@@ -21,6 +21,8 @@
     <p><%= lesson.description %></p>
     <p><%= lesson.content %></p> 
     <p><%= lesson.video_time %></p>
+    <%= link_to 'Edit', edit_course_lesson_path(@course, lesson), class: "tiny button primary" %> 
+    <%= link_to 'Delete', course_lesson_path(@course, lesson), method: :delete, class: "tiny button primary" %>
     <hr>
   <% end %>
   
