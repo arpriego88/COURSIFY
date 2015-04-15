@@ -14,6 +14,7 @@ gem 'foundation-rails'
 gem 'will_paginate', '~> 3.0.6'
 gem 'font-awesome-rails'
 gem 'devise'
+gem "jquery-slick-rails"
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
