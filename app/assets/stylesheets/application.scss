@@ -20,6 +20,14 @@
  @import "font-awesome";
  @import 'slick';
 
+ .lessonslide {
+    padding: 15px;
+ }
+
+ .lessonEditDelete {
+    padding-top: 10px;
+ }
+
 /* Slider */
 
 .slick-slider {
@@ -138,7 +146,7 @@
     line-height: 0;
     font-size: 0;
     cursor: pointer;
-    background: red;
+    background: #FCF4FF;
     color: blue;
     top: 50%;
     margin-top: -10px;
@@ -245,7 +253,6 @@
 }
 
 .blue, html {
-    background: #3498db;
     color: #fff;
 
 
