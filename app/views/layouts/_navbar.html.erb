@@ -11,14 +11,16 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
+        <% if user_signed_in? %>
         <li class="has-dropdown">
           <%= link_to "Courses", courses_path %>
           <ul class="dropdown">
             <li><%= link_to "New Course", new_course_path %></li>
           </ul>
-        </l>
+        </li>
+        <% end %>
         <li class="has-dropdown">
-          <%= link_to "My Account", courses_path %>
+          <%= link_to "Account", courses_path %>
           <ul class="dropdown">
             <% if user_signed_in? %>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>

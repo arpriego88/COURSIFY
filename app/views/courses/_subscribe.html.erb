@@ -1,0 +1,4 @@
+<%= form_for(@user.subscribes.build, url: subscribes_path) do |f| %>
+  <div><%= hidden_field_tag :course_id, @course.id %></div>
+  <%= f.submit "Follow", class: "small button success round" %>
+<% end %>

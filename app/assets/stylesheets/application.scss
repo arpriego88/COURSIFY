@@ -17,6 +17,7 @@
 
  */
 
+<<<<<<< HEAD
  @import "font-awesome";
  @import 'slick';
 
@@ -331,5 +332,21 @@
             opacity: 0.75;
         }
     }
+=======
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+@import "font-awesome";
+
+
+h1, h2, h3, h4, h5, h6, span {
+  font-family: 'Oswald', sans-serif; 
+  font-weight: bold;
+  text-decoration: none;
+}
+
+p, button {
+  font-family: 'Oswald', sans-serif;
+  font-weight: normal;
+  text-decoration: none;
+>>>>>>> chris/jointable
 }
 

@@ -1,4 +1,8 @@
 class PagesController < ApplicationController
   def index
+    if user_signed_in?
+      redirect_to courses_path
+    end
+    @user = User.new
   end
 end
