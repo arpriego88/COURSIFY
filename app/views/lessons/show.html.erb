@@ -1,9 +1,8 @@
-<div class="flex-video">
 <iframe id="ytplayer" type="text/html" width="100%"
   src="<%= embed_youtube_player_url(@lesson.video_url)%>"
   frameborder="0">
 </iframe>
-</div>
+
 <span>
   <% if @lesson.complete? %>
     <i class= "fa fa-check-circle-o" style= "color: green;"></i>
@@ -34,5 +33,10 @@
     </div>
   </li>
 </ul>
+
+<script>
+var heightMap = $(window).height();
+$('#ytplayer').css('height',heightMap);
+</script
 
 

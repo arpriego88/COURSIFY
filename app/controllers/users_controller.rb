@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  def dashboard
+  before_action :authenticat_user!
+  before_action :current_user, :only => [:show]
+  
+  def show
+    @user = current_user
   end
 
   def admin

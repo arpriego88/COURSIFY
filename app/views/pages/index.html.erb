@@ -1,1 +1,17 @@
-<%= link_to fa_icon('user', text: 'COURSIFY!'), '#', class: 'button alert' %>
+<div class="small-12 medium-6 large-6 columns text-center">
+  <span style="font-size: 4em;">ZERO to HERO</span>
+  <h1>in</h1> 
+  <span style="font-size: 4em">16 Weeks.</span>
+  <div clas="row small-12">
+    <div class="small-4 columns">
+      <i class="fa fa-code fa-5x"></i>
+    </div>
+    <div class="small-4 columns">
+      <i class="fa fa-code-fork fa-5x"></i>
+    </div>
+    <div class="small-4 columns">
+      <i class="fa fa-lightbulb-o fa-5x"></i>
+    </div>
+  </div>
+</div>
+<%= render 'devise/registrations/homenew', locals: { user: @user } %>
