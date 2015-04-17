@@ -15,8 +15,11 @@
             <%= course.name %>
         </div>
         <div class="right">
-          <%= course.subscribes.count %>
-          <%= link_to "Subscribe", subscribes_path(course_id: course.id), method: :post, class: 'button success round tiny'%>
+          <% if current_user.courses.include?(course) %>
+            <%= link_to "unsubscribe", subscribe_path(id: course.id), method: :delete, class: 'button alert round tiny'%>
+          <% else %>
+             <%= link_to "Subscribe", subscribes_path(course_id: course.id), method: :post, class: 'button success round tiny'%>
+          <% end %>
         </div>
       </div>
       </h2>
