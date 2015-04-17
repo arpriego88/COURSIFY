@@ -1,5 +1,6 @@
 class Lesson < ActiveRecord::Base
   belongs_to :course
+  has_many :exercises
 
   after_update :check_course_completion
 
