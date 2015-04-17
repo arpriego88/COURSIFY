@@ -5,10 +5,9 @@ Rails.application.routes.draw do
   resources :courses do
     resources :lessons
   end
-
   resources :exercises
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :users
+  get '/users/:id' => 'users#profile', as: :profile
   resources :subscribes, only: [:create, :destroy]
 
   
