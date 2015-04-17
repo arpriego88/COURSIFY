@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticat_user!
+  before_action :authenticate_user!
   before_action :current_user, :only => [:show]
   
   def show
