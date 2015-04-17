@@ -15,7 +15,7 @@
             <%= course.name %>
         </div>
         <div class="right">
-          <% if current_user.courses.include?(course) %>
+          <% if course.users.include?(current_user) %>
             <%= link_to "unsubscribe", subscribe_path(id: course.id), method: :delete, class: 'button alert round tiny'%>
           <% else %>
              <%= link_to "Subscribe", subscribes_path(course_id: course.id), method: :post, class: 'button success round tiny'%>
