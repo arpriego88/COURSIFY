@@ -1,6 +1,0 @@
-<h1><%= @user.name %></h1>
-<% @user.courses.each do |course| %>
-  <h3><%= course.name %></h3>
-  <h3><%= course.description %></h3>
-  <%= course.complete? %>
-<% end %>
