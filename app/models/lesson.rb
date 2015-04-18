@@ -5,7 +5,7 @@ class Lesson < ActiveRecord::Base
   has_many :exercises
 
 
-  after_update :check_course_completion
+  # after_update :check_course_completion
 
   def check_course_completion
     # Check all the lessons

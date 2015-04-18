@@ -231,6 +231,9 @@ GEM
     wistia-uploader (1.1.0)
       json
       multipart-post (>= 1.2)
+    xray-rails (0.1.15)
+      coffee-rails
+      rails (>= 3.1.0)
     yard (0.8.7.6)
 
 PLATFORMS
@@ -259,3 +262,4 @@ DEPENDENCIES
   will_paginate (~> 3.0.6)
   wistia-api
   wistia-uploader
+  xray-rails

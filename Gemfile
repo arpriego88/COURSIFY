@@ -27,6 +27,7 @@ end
 
 group :development, :test do
   gem 'jazz_fingers'
+  gem 'xray-rails'
   # gem 'pry-byebug'
   gem 'better_errors'
   gem 'web-console', '~> 2.0'
