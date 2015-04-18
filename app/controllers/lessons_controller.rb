@@ -5,6 +5,9 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = @course.lessons.find(params[:id])
+    if @lesson.wistia_video != nil
+      @video = Wistia::Media.find(@lesson.wistia_video).attributes["embedCode"]
+    end
   end
 
   def new
@@ -13,13 +16,25 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = @course.lessons.build(lesson_params)
-    if @lesson.save
+    # if @lesson.save
+    #   flash[:success] = "Lesson created!"
+    #   redirect_to @course
+    # else
+    #   flash[:alert] = "Something went wrong. Try again!"
+    #   redirect_to new_course_lesson_path
+    
+    if @lesson.valid? && (params["lesson"]["video"] != nil)
+
+      @lesson.wistia_video = post_video_to_wistia(params["lesson"]["video"].tempfile)
+      @lesson.save
+
       flash[:success] = "Lesson created!"
       redirect_to @course
     else
       flash[:alert] = "Something went wrong. Try again!"
       redirect_to new_course_lesson_path
     end
+
   end
 
   def edit
@@ -29,6 +44,7 @@ class LessonsController < ApplicationController
   def update
     @lesson = @course.lessons.find(params[:id])
     if @lesson.update_attributes(lesson_params)
+      @lesson.wistia_video = post_video_to_wistia(params["lesson"]["video"].tempfile)
       flash[:success] = "Lesson updated!"
       redirect_to @course
     else
@@ -41,6 +57,23 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
     redirect_to @course
+  end
+
+  def post_video_to_wistia(video_file)
+
+    # binding.pry
+    conn = Faraday.new(:url => 'https://upload.wistia.com/') do |conn|
+      conn.request :multipart
+      conn.request :url_encoded
+      conn.adapter :net_http
+    end
+
+    response = conn.post '/', {
+      api_password: ENV['WISTIA_API_PASSWORD'],
+      file: Faraday::UploadIO.new(video_file.path, 'application/octet-stream')
+    }
+
+    return JSON.parse(response.body)["hashed_id"]
   end
 
   private

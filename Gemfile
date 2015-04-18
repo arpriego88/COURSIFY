@@ -14,9 +14,12 @@ gem 'foundation-rails'
 gem 'will_paginate', '~> 3.0.6'
 gem 'font-awesome-rails'
 gem 'devise'
-gem "jquery-slick-rails"
+
+gem 'wistia-api'
 gem 'wistia-uploader'
 gem 'figaro'
+gem 'faraday', '~> 0.9.1'
+
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

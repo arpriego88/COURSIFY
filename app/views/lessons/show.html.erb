@@ -1,7 +1,18 @@
+<!-- 
 <iframe id="ytplayer" type="text/html" width="100%"
   src="<%= embed_youtube_player_url(@lesson.video_url)%>"
   frameborder="0">
-</iframe>
+</iframe> -->
+
+<div class="flex-video">
+<!-- <iframe id="ytplayer" type="text/html" width="100%"
+  src="<%= embed_youtube_player_url(@lesson.video_url)%>"
+  frameborder="0">
+</iframe> -->
+<div class="video-container">
+  <%= raw @video %>
+</div>
+</div>
 
 <span>
 
