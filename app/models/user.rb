@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :subscribes
   has_many :courses, through: :subscribes
+  has_many :completes
+  has_many :lessons, through: :completes
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

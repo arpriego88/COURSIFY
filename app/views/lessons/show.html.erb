@@ -1,14 +1,29 @@
+<!-- 
 <iframe id="ytplayer" type="text/html" width="100%"
   src="<%= embed_youtube_player_url(@lesson.video_url)%>"
   frameborder="0">
-</iframe>
+</iframe> -->
+
+<div class="flex-video">
+<!-- <iframe id="ytplayer" type="text/html" width="100%"
+  src="<%= embed_youtube_player_url(@lesson.video_url)%>"
+  frameborder="0">
+</iframe> -->
+  <div class="video-container">
+  
+    <%= raw @video %>
+  </div>
+</div>
 
 <span>
-  <% if @lesson.complete? %>
-    <i class= "fa fa-check-circle-o" style= "color: green;"></i>
-  <% else %>
-    <span title="Not Complete"><i class= "fa fa-circle-o" style= "color: red;"></i></span>
-  <% end %>
+
+  <div class="small-12 large-11 large-centered columns ">
+    <% if @lesson.users.include?(current_user) %>
+      <%= link_to fa_icon("check-circle-o"), complete_path(id: @lesson.id), method: :delete, style: "color: green"%>
+    <% else %>
+      <%= link_to fa_icon("circle-o"), completes_path(lesson_id: @lesson.id), method: :post, style: "color: red"%>
+    <% end %>
+  </div>
 </span>
 <span style="font-size: 1.5em;"><strong><%= @lesson.name %></strong></span> | <span><%= @lesson.video_time %></span>
 <p class="well"><%= @lesson.description %></p>

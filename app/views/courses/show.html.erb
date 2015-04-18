@@ -2,11 +2,8 @@
 
   <div class="large-8 large-centered columns">
   <h2 class="text-center">
-    <% if @course.complete? %>
-      <i class= "fa fa-check-circle-o" style= "color: green;"></i>
-    <% else %>
-      <span title="Not Complete"><i class= "fa fa-circle-o" style= "color: red;"></i></span>
-    <% end %>
+
+    <%= course_complete_check(@course, current_user.id) %>
     <%= @course.name %></h2>
   <%= @course.description %>
   <br><hr>
@@ -18,12 +15,8 @@
     <% @course.lessons.each do |lesson| %>
       
       <div class="lessonslide">
-        <% if lesson.complete? %>
-          <i class= "fa fa-check-circle-o" style= "color: green;"></i>
-        <% else %>
-          <span title="Not Complete"><i class= "fa fa-circle-o" style= "color: red;"></i></span>
-        <% end %>
-      
+
+        <%= lesson_complete_check(lesson, current_user) %>
         <%= link_to lesson.name, course_lesson_path(@course, lesson) %>
         <%= lesson.description %>
         <%= lesson.content %>
