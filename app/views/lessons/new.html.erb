@@ -1,7 +1,7 @@
 <div class="row">
   <div class="panel large-8 large-centered columns">
   <h2 class="text-center">New Lesson</h2></br>
-  <%= form_for [@course, @lesson] do |f| %>
+  <%= form_for [@course, @lesson], input_html: {multipart: true} do |f| %>
 
       <div class="small-12 large-11 large-centered columns ">
         <%= f.text_field :name, autofocus: true, placeholder: 'Name' %>
@@ -12,7 +12,7 @@
       </div>
 
       <div class="small-12 large-11 large-centered columns ">
-        <%= f.text_field :video_url, placeholder: 'Put your video here' %>
+        <%= f.file_field :video_url, placeholder: 'Put your video here' %>
       </div>
 
        <div class="small-12 large-11 large-centered columns ">

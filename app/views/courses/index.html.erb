@@ -10,11 +10,7 @@
       <div class="clearfix">
         <div class="left">
           <h2>
-            <% if course.complete? %>
-              <i class= "fa fa-check-circle-o" style= "color: green;"></i>
-            <% else %>
-              <i class= "fa fa-circle-o" style= "color: red;"></i>
-            <% end %>
+            <%= course_complete_check(course, current_user.id) %>
             <%= course.name %>
         </div>
         <div class="right">

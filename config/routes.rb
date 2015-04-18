@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get '/users/:id' => 'users#profile', as: :profile
   resources :subscribes, only: [:create, :destroy]
 
+  resources :completes, only: [:create, :destroy]
+
+
+  get '/admin' => 'users#admin', as: :admin
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

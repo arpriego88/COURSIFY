@@ -15,6 +15,10 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'cancancan'
+gem 'wistia-api'
+gem 'wistia-uploader'
+gem 'figaro'
+gem 'faraday', '~> 0.9.1'
 
 
 group :doc do
@@ -22,7 +26,9 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'pry-byebug'
+  gem 'jazz_fingers'
+  gem 'xray-rails'
+  # gem 'pry-byebug'
   gem 'better_errors'
   gem 'web-console', '~> 2.0'
   gem 'spring'
