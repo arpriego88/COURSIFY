@@ -12,23 +12,22 @@
       <!-- Right Nav Section -->
       <ul class="right">
         <% if user_signed_in? %>
-        <li class="has-dropdown">
+        <li>
           <%= link_to "Courses", courses_path %>
-          <ul class="dropdown">
-            <li><%= link_to "New Course", new_course_path %></li>
-          </ul>
         </li>
         <% end %>
+        <% if user_signed_in? %>
         <li class="has-dropdown">
-          <%= link_to "Account", courses_path %>
+          <%= link_to current_user.name, courses_path %>
           <ul class="dropdown">
-            <% if user_signed_in? %>
               <li><%= link_to "Profile", profile_path(current_user) %></li>
               <li><%= link_to "Account Settings", edit_user_registration_path %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          </ul>
             <% else %>
-              <li><%= link_to "Sign In", new_user_session_path %></li>
-              <li><%= link_to "Sign Up", new_user_registration_path %></li>
+              <li class="has-form">
+                <li><%= link_to "Sign In", new_user_session_path, class: 'button' %></li>
+              </li>
             <% end %>
           </ul>
         </li>
