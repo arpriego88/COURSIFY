@@ -15,13 +15,16 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'font-awesome-rails'
 gem 'devise'
 gem "jquery-slick-rails"
+gem 'wistia-uploader'
+gem 'figaro'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
 end
 
 group :development, :test do
-  gem 'pry-byebug'
+  gem 'jazz_fingers'
+  # gem 'pry-byebug'
   gem 'better_errors'
   gem 'web-console', '~> 2.0'
   gem 'spring'
