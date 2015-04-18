@@ -11,6 +11,8 @@
     <%= f.text_field :description, autofocus: true, placeholder: 'Course Description' %>
     </div>
 
+    <%= f.hidden_field :teacher_id, value: current_user.id, class: 'form-control'  %> 
+
     <div class="small-12 large-11 large-centered columns">
     <%= f.submit "Create Course", class: "small button primary expand" %>
     </div>
