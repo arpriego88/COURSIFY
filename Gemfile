@@ -32,6 +32,10 @@ group :development, :test do
   gem 'better_errors'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'capybara'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :production do
