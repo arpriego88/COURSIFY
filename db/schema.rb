@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414212451) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150418212247) do
+=======
+ActiveRecord::Schema.define(version: 20150417201748) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "completes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "completes", ["lesson_id"], name: "index_completes_on_lesson_id", using: :btree
+  add_index "completes", ["user_id"], name: "index_completes_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150414212451) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "complete",    default: false
+    t.integer  "teacher_id"
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -42,6 +57,11 @@ ActiveRecord::Schema.define(version: 20150414212451) do
     t.datetime "updated_at",                       null: false
     t.integer  "course_id"
     t.boolean  "complete",         default: false, null: false
+<<<<<<< HEAD
+    t.integer  "teacher_id"
+=======
+    t.string   "wistia_video"
+>>>>>>> master
   end
 
   add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
@@ -70,11 +90,14 @@ ActiveRecord::Schema.define(version: 20150414212451) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "role",                   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "completes", "lessons"
+  add_foreign_key "completes", "users"
   add_foreign_key "lessons", "courses"
   add_foreign_key "subscribes", "courses"
   add_foreign_key "subscribes", "users"

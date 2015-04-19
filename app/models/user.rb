@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
-  has_many :subscribes
+  has_many :subscribes, dependent: :destroy
   has_many :courses, through: :subscribes
+  has_many :completes
+  has_many :lessons, through: :completes
+
+  enum role: %w(student teacher admin)
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,4 +13,5 @@ class User < ActiveRecord::Base
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
 end
