@@ -57,6 +57,21 @@ ActiveRecord::Schema.define(version: 20150417201748) do
 
   add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
 
+  create_table "shirts", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "height"
+    t.integer  "collar"
+    t.integer  "weight"
+    t.integer  "chest"
+    t.integer  "arm"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
   create_table "subscribes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "course_id"
@@ -81,6 +96,12 @@ ActiveRecord::Schema.define(version: 20150417201748) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "height_ft"
+    t.integer  "height_in"
+    t.integer  "weight"
+    t.integer  "collar"
+    t.integer  "chest"
+    t.integer  "arm"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
