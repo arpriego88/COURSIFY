@@ -15,3 +15,31 @@
   </div>
 </div>
 <%= render 'devise/registrations/homenew', locals: { user: @user } %>
+
+
+<hr class="spacing">
+<h3 style="margin-bottom: 25px;">Featured Courses</h3>
+
+ <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+  <% @courses.each do |course| %>
+    <li>
+      <div class="panel box">
+        <%= link_to course_path(course) do %>
+          <%= image_tag course.image.url :medium %>
+          
+          <h3 class="text-center">
+            <%= course.name %>
+          </h3>
+          
+          <p><%= course.description %></p>
+          
+          <% if course.users.include?(current_user) %>
+            <%= link_to "unsubscribe", subscribe_path(id: course.id), method: :delete, class: 'button alert expand'%>
+          <% else %>
+            <%= link_to "Subscribe", subscribes_path(course_id: course.id), method: :post, class: 'button success expand'%>
+          <% end %>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+</ul>

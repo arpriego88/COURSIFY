@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150418212247) do
-=======
-ActiveRecord::Schema.define(version: 20150417201748) do
->>>>>>> master
+ActiveRecord::Schema.define(version: 20150419055956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,10 +29,14 @@ ActiveRecord::Schema.define(version: 20150417201748) do
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "complete",    default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.boolean  "complete",           default: false
     t.integer  "teacher_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -57,11 +57,8 @@ ActiveRecord::Schema.define(version: 20150417201748) do
     t.datetime "updated_at",                       null: false
     t.integer  "course_id"
     t.boolean  "complete",         default: false, null: false
-<<<<<<< HEAD
     t.integer  "teacher_id"
-=======
     t.string   "wistia_video"
->>>>>>> master
   end
 
   add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree

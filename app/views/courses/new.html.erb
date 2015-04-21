@@ -4,11 +4,16 @@
   <%= form_for @course do |f| %>
     
     <div class="small-12 large-11 large-centered columns"> 
-    <%= f.text_field :name, autofocus: true, placeholder: 'Course Name' %>
+      <%= f.text_field :name, autofocus: true, placeholder: 'Course Name' %>
     </div>
 
     <div class="small-12 large-11 large-centered columns">
-    <%= f.text_field :description, autofocus: true, placeholder: 'Course Description' %>
+      <%= f.text_field :description, autofocus: true, placeholder: 'Course Description' %>
+    </div>
+
+    <div class="small-12 large-11 large-centered columns">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
     </div>
 
     <%= f.hidden_field :teacher_id, value: current_user.id, class: 'form-control'  %> 

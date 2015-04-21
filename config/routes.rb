@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
 
   root 'pages#index'
-  
+  devise_for :users, :controllers => { registrations: 'registrations' }
+
   resources :courses do
     resources :lessons
   end
+  
   resources :exercises
-  devise_for :users, :controllers => { registrations: 'registrations' }
-  get '/users/:id' => 'users#profile', as: :profile
   resources :subscribes, only: [:create, :destroy]
-
   resources :completes, only: [:create, :destroy]
 
-
+  get '/users/:id' => 'users#profile', as: :profile
   get '/admin' => 'users#admin', as: :admin
 
   
