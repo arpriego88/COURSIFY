@@ -9,21 +9,17 @@ class LessonsController < ApplicationController
     if @lesson.wistia_video != nil
       @file = Wistia::Media.find(@lesson.wistia_video).attributes
       @video = @file["embedCode"]
+      @video_time = @file["duration"]
+      return JSON.parse(response.body)["hashed_id"]
     end
   end
- 
+
   def new
     @lesson = @course.lessons.new
   end
 
   def create
     @lesson = @course.lessons.build(lesson_params)
-    # if @lesson.save
-    #   flash[:success] = "Lesson created!"
-    #   redirect_to @course
-    # else
-    #   flash[:alert] = "Something went wrong. Try again!"
-    #   redirect_to new_course_lesson_path
     if @lesson.valid? && (params["lesson"]["video_url"] != nil)
 
       @lesson.wistia_video = post_video_to_wistia(params["lesson"]["video_url"].tempfile)
@@ -45,7 +41,7 @@ class LessonsController < ApplicationController
   def update
     @lesson = @course.lessons.find(params[:id])
     if @lesson.update_attributes(lesson_params)
-      @lesson.wistia_video = post_video_to_wistia(params["lesson"]["video"].tempfile)
+      @lesson.wistia_video = update_video_to_wistia(params["lesson"]["video_url"])
       flash[:success] = "Lesson updated!"
       redirect_to @course
     else
@@ -61,8 +57,6 @@ class LessonsController < ApplicationController
   end
 
   def post_video_to_wistia(video_file)
-
-    # binding.pry
     
     conn = Faraday.new(:url => 'https://upload.wistia.com/') do |conn|
       conn.request :multipart
@@ -78,14 +72,21 @@ class LessonsController < ApplicationController
     return JSON.parse(response.body)["hashed_id"]
   end
 
-    # conn = Faraday.new(:url => 'https://api.wistia.com/v1/stats/medias/') do |conn|
-    #   conn.request :multipart
-    #   conn.request :url_encoded
-    #   conn.adapter :net_http
-    # end
+  def update_video_to_wistia(video_file)
+    
+    conn = Faraday.new(:url => 'https://upload.wistia.com/') do |conn|
+      conn.request :multipart
+      conn.request :url_encoded
+      conn.adapter :net_http
+    end
 
-    # response = conn.post '/#{}.json'
-    # return JSON.parse(response.body)
+    response = conn.post '/', {
+      api_password: ENV['WISTIA_API_PASSWORD'],
+      file: Faraday::UploadIO.new(video_file.path, 'application/octet-stream')
+    }
+    return JSON.parse(response.body)["hashed_id"]
+  end
+
     
   private
 

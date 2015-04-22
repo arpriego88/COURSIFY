@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
-    @course = Course.find_by(params[:id])
+    @course = Course.find(params[:id])
     @user = current_user
   end
 

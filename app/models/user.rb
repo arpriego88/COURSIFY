@@ -14,4 +14,17 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #setting up emails sent out to users upon sign up/ password resets and account conformations
+  after_create :email_user
+
+  def to_param
+    uuid
+  end
+
+  private
+
+  def email_user
+    UserMailer.user_welcome(self).deliver 
+  end
+  
 end
