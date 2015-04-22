@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     resources :lessons
   end
   resources :exercises
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks => "users/omniauth_callbacks" }
+  
   get '/users/:id' => 'users#profile', as: :profile
   resources :subscribes, only: [:create, :destroy]
 
