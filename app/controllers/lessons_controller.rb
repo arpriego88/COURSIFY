@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_course
 
@@ -94,7 +95,7 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:name, :description, :content, :video_url, :video_time, :exercise_name, :exercise_content, :complete)
+    params.require(:lesson).permit(:name, :description, :content, :video_url, :video_time, :exercise_name, :exercise_content, :complete, :teacher_id)
   end
 
 end
