@@ -5,12 +5,7 @@
 </iframe> -->
 
 <div class="flex-video">
-<!-- <iframe id="ytplayer" type="text/html" width="100%"
-  src="<%= embed_youtube_player_url(@lesson.video_url)%>"
-  frameborder="0">
-</iframe> -->
   <div class="video-container">
-  
     <%= raw @video %>
   </div>
 </div>
@@ -25,7 +20,7 @@
     <% end %>
   </div>
 </span>
-<span style="font-size: 1.5em;"><strong><%= @lesson.name %></strong></span> | <span><%= @lesson.video_time %></span>
+<span style="font-size: 1.5em;"><strong><%= @lesson.name %></strong></span> | <span><%= raw (@video_time/60).round(@video_time%12).round %></span>
 <p class="well"><%= @lesson.description %></p>
 
 <ul class="accordion" data-accordion>
