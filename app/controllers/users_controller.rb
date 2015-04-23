@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def profile
     @user = current_user
+    @courses = Course.all
   end
 end
 

@@ -20,6 +20,7 @@ gem 'wistia-api'
 gem 'wistia-uploader'
 gem 'figaro'
 gem 'faraday', '~> 0.9.1'
+gem 'paperclip', '~> 4.2'
 gem 'omniauth-twitter'
 
 

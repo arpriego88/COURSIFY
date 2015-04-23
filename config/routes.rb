@@ -1,19 +1,16 @@
 Rails.application.routes.draw do
 
   root 'pages#index'
-  
+ 
   resources :courses do
     resources :lessons
   end
+  
   resources :exercises
   devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "omniauth_callbacks" }
-  
   get '/users/:id' => 'users#profile', as: :profile
   resources :subscribes, only: [:create, :destroy]
-
   resources :completes, only: [:create, :destroy]
-
-
   get '/admin' => 'users#admin', as: :admin
 
   

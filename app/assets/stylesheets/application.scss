@@ -15,6 +15,7 @@
  *= require foundation_and_overrides
  *= require font-awesome
 
+
  */
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 @import "font-awesome";
@@ -38,6 +39,17 @@ p, button {
  .lessonEditDelete {
     padding-top: 10px;
  }
+.box {
+  margin-top: 5px;
+}
+.box img {
+  width: 100%;
+}
+
+.spacing {
+  margin-top: 75px;
+  margin-bottom: 15px;
+}
 
 
 
