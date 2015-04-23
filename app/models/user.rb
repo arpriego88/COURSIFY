@@ -38,9 +38,9 @@ class User < ActiveRecord::Base
   #setting up emails sent out to users upon sign up/ password resets and account conformations
   
 
-  def to_param
-    uuid
-  end
+  # def to_param
+  #   uid
+  # end
 
   private
 
