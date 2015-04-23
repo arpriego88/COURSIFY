@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:twitter]
+  after_create :email_user
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -34,4 +35,18 @@ class User < ActiveRecord::Base
   #     end
   #   end
   # end
+  #setting up emails sent out to users upon sign up/ password resets and account conformations
+  
+
+  def to_param
+    uuid
+  end
+
+  private
+
+  def email_user
+    UserMailer.user_welcome(self).deliver 
+  end
+  
+
 end
