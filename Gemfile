@@ -20,6 +20,7 @@ gem 'wistia-api'
 gem 'wistia-uploader'
 gem 'figaro'
 gem 'faraday', '~> 0.9.1'
+gem 'omniauth-twitter'
 
 
 group :doc do
@@ -38,6 +39,7 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'dotenv-rails'
 end
 
 group :production do

@@ -12,5 +12,10 @@
 !/log/.keep
 /tmp
 
+#Ignore all schema changes
+/db/schema.rb
+
 # Ignore application configuration
 /config/application.yml
+
+.env
