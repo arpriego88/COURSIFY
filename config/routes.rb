@@ -9,9 +9,11 @@ Rails.application.routes.draw do
   resources :exercises
   devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "omniauth_callbacks" }
   get '/users/:id' => 'users#profile', as: :profile
+  get '/admin' => 'users#admin', as: :admin
+  
+  resource :charges
   resources :subscribes, only: [:create, :destroy]
   resources :completes, only: [:create, :destroy]
-  get '/admin' => 'users#admin', as: :admin
 
   
   # The priority is based upon order of creation: first created -> highest priority.
