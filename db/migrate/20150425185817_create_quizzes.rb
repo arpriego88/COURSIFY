@@ -1,7 +1,7 @@
 class CreateQuizzes < ActiveRecord::Migration
   def change
     create_table :quizzes do |t|
-      t.references :exercise
+      t.references :lessons
       t.string :title
 
       t.timestamps null: false

@@ -78,10 +78,10 @@ ActiveRecord::Schema.define(version: 20150425190446) do
   end
 
   create_table "quizzes", force: :cascade do |t|
-    t.integer  "exercise_id"
+    t.integer  "lessons_id"
     t.string   "title"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "subscribes", force: :cascade do |t|
