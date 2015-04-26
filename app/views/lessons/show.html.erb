@@ -23,6 +23,8 @@
 <span style="font-size: 1.5em;"><strong><%= @lesson.name %></strong></span> | <span></span>
 <p class="well"><%= @lesson.description %></p>
 
+<%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %>
+
 <ul class="accordion" data-accordion>
   <li class="accordion-navigation">
     <a href="#panel1a">Lesson Notes</a>

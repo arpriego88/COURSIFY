@@ -1,5 +1,6 @@
 class Quiz < ActiveRecord::Base
+  belongs_to :lesson
   has_many :questions, dependent: :destroy
 
-  belongs_to :lesson
+  accepts_nested_attributes_for :questions
 end
