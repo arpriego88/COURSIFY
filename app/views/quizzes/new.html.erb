@@ -5,8 +5,9 @@
       <%= question.label :question %>
       <%= question.text_field :content %>
       <%= question.fields_for :answers do |answer| %>
+      <%= answer.check_box :correct %>
       <%= answer.label :answer %>
-      <%= answer.text_field :content %>
+      <%= answer.text_field :content%>
       <% end %>
     <% end %>
 <% end %>
