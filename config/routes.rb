@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'pages#index'
  
   resources :courses do
-    resources :lessons
+    resources :lessons do
+      resources :quizzes, only: [:new, :create]
+    end
   end
   
   resources :exercises
