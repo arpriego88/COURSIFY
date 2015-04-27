@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424162038) do
+ActiveRecord::Schema.define(version: 20150426182233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.string   "content"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "correct",     default: false
+  end
 
   create_table "completes", force: :cascade do |t|
     t.integer  "user_id"
@@ -62,6 +70,20 @@ ActiveRecord::Schema.define(version: 20150424162038) do
   end
 
   add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "quiz_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "subscribes", force: :cascade do |t|
     t.integer  "user_id"
