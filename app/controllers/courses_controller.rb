@@ -4,7 +4,6 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
-    @course = Course.find_by(params[:id])
     @user = current_user
   end
 
@@ -52,7 +51,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:name, :description, :lesson_name, :lesson_description, :complete, :teacher_id)
+    params.require(:course).permit(:name, :description, :lesson_name, :lesson_description, :complete, :teacher_id, :image)
   end
 
 

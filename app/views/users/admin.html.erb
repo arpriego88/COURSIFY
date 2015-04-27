@@ -1,5 +1,31 @@
-<h1>Users#admin</h1>
-<p>Find me in app/views/users/admin.html.erb</p>
-<% @exercises.each do |e| %>
-  <%= e.response %>
-  <% end %>
+<div class="clearfix">
+  <div class="left">
+    <h1>Admin</h1>
+  </div>
+  <div class="right">
+    <h1>Video Count: <%= @media.count %></h1>
+  </div>
+</div>
+
+<p> Load #: <%= @stats.load_count %></p>
+<p> Plays: <%= @stats.play_count %></p>
+<p> Hours Watched: <%= (@stats.hours_watched).round %></p>
+<% @lessons.each do |l| %>
+<p><%= l.name %></p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Media Name</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @media.each do |n| %>
+    <tr>
+      <td><p><%= n.name %></p></td>
+    </tr>
+      <% end %>
+  </tbody>
+</table>
+

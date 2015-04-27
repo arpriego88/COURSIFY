@@ -4,15 +4,20 @@
     <%= form_for @course do |f| %>
 
       <div class="small-12 large-11 large-centered columns">
-      <%= f.text_field :name, autofocus: true %>
+        <%= f.text_field :name, autofocus: true %>
       </div>
 
       <div class="small-12 large-11 large-centered columns">
-      <%= f.text_field :description, autofocus: true %>
+        <%= f.text_field :description, autofocus: true %>
+      </div>
+
+      <div class="small-12 large-11 large-centered columns">
+        <%= f.label :image %>
+        <%= f.file_field :image %>
       </div>
       
       <div class="small-12 large-11 large-centered columns">
-      <%= f.submit "Save Changes", class: "small button primary expand" %>
+        <%= f.submit "Save Changes", class: "small button primary expand" %>
       </div>
 
     <% end %>
