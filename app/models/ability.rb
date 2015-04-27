@@ -10,6 +10,7 @@ class Ability
         can :manage, Course, :teacher_id => user.id
         can :manage, Lesson, :teacher_id => user.id
         can :manage, Exercise
+        # can :manage, Quiz, :teacher_id => user.id
     elsif user.student?
         can :read, Course
         can :read, Lesson
