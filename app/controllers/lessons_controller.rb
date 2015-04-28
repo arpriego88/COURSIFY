@@ -10,7 +10,7 @@ class LessonsController < ApplicationController
       @file = Wistia::Media.find(@lesson.wistia_video).attributes
       @video = @file["embedCode"]
       @video_time = @file["duration"]
-      return JSON.parse(response.body)["hashed_id"]
+      # return JSON.parse(response.body)["hashed_id"]
     end
   end
 
