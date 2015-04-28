@@ -30,6 +30,15 @@ class QuizzesController < ApplicationController
     @quiz = @lesson.quizzes.find(params[:id])
   end
 
+  def grade
+    @lesson = Lesson.find(params[:lesson_id])
+    @quiz = @lesson.quizzes.find(params[:quiz_id])
+    @results = params['submission']
+    @score = @results.count do |k,v|
+      v == 'true'
+    end
+  end
+
   private
 
   def quiz_params

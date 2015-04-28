@@ -332,6 +332,7 @@ DEPENDENCIES
   omniauth-twitter
   paperclip (~> 4.2)
   pg
+  pry-byebug
   rails (= 4.2.0)
   rails_12factor
   rspec-rails
