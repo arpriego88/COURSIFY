@@ -52,6 +52,37 @@
   <% end %>
 <% end %>
 
+<% if @user.courses.present? == false %>
+  <p>You haven't subscribed to any courses yet ya silly goose! Check out our <%= link_to "courses", courses_path %></p>
+<% end %>
+
+<!-- Wistia Stats Listed for their uploaded videos --> 
+<!-- <h1>
+  <% @video.each do |key| %>
+    <%= key.keys[0] %>
+  <% end %>
+</h1> -->
+<h1>
+<% @video.each do |video| %>
+  <% video.each do |key, value| %>
+    <%= key %> : <%= value %><br>
+  <% end %>
+  <hr>
+<% end %>
+
+<!-- <%# @video.each do |video| %>
+  Play count: <%# video['play_count'] %>
+  <hr>
+<%# end %> -->
+<% @video_map.each do |video_map| %>
+  <% video_map.each do |key, value| %>
+    <%= key %> : <%= value %><br>
+  <% end %>
+  <hr>
+<% end %>
+</h1>
+
+
 
 <hr class="spacing">
 <h3 style="margin-bottom: 25px;">Courses</h3>
