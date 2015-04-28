@@ -1,0 +1,16 @@
+<h1>Quizzes#new</h1>
+
+<%= form_for([@course, @lesson, @quiz]) do |f| %>
+    <%= f.fields_for :questions do |question| %>
+      <%= question.label :question %>
+      <%= question.text_field :content %> 
+      <%= question.fields_for :answers do |answer| %> 
+      <%= %>
+      <%= answer.label :answer %>
+      <%= answer.text_field :content%>
+      <% end %>
+      <hr>
+    <% end %>
+
+    <%= f.submit %>
+<% end %>

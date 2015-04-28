@@ -24,6 +24,12 @@ class QuizzesController < ApplicationController
     redirect_to course_lesson_path(@course, @lesson)
   end
 
+  def show
+    @course = Course.find(params[:course_id])  
+    @lesson = Lesson.find(params[:lesson_id])
+    @quiz = @lesson.quizzes.find(params[:id])
+  end
+
   private
 
   def quiz_params
