@@ -27,7 +27,6 @@ class UsersController < ApplicationController
         @video_mapzz << Wistia::Stats::Event.find(:all, media_id: @wistia)
       end
     end
-    
   end
 
 end
