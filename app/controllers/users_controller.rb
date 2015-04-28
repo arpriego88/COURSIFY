@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :current_user, :only => [:show]
 
+
   def admin
     @user = current_user
     @course = Course.find_by(params[teacher_id: current_user])
@@ -15,9 +16,20 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = current_user
-    @courses = Course.all
+    @video = []
+    @video_stats = []
+    @video_mapzz = []
+    @courses = Course.where(teacher_id: current_user.id)
+    @courses.each do |course|
+      course.lessons.each do |lesson|
+        @wistia = lesson.wistia_video
+        @video_stats << Wistia::Stats::Media.get(@wistia)
+        @video_mapzz << Wistia::Stats::Event.find(:all, media_id: @wistia)
+      end
+    end
+    
   end
+
 end
 
 

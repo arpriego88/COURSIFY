@@ -23,6 +23,7 @@ gem 'faraday', '~> 0.9.1'
 gem 'paperclip', '~> 4.2'
 gem 'omniauth-twitter'
 gem 'stripe'
+gem 'httparty'
 
 
 group :doc do
