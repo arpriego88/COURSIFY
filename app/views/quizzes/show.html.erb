@@ -1,0 +1,14 @@
+<h1>Quiz <%= @quiz.title %> for <%= @lesson.name %></h1>
+
+<%= form_for :submission, url: grade_path  do |f|%>
+  <% @quiz.questions.each do |question| %>
+    <p><%= question.content %></p>
+    <% question.answers.each do |answer| %>
+      <%= f.radio_button question.id, answer.correct %> <%= answer.content %><br>
+    <% end %>
+  <% end %>
+  <br>
+  <%= hidden_field_tag :lesson_id, @lesson.id %>
+  <%= hidden_field_tag :quiz_id, @quiz.id%>
+  <%= f.submit 'See Results'%>
+<% end %>

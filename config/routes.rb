@@ -4,7 +4,7 @@ Rails.application.routes.draw do
  
   resources :courses do
     resources :lessons do
-      resources :quizzes, only: [:new, :create]
+      resources :quizzes, only: [:new, :create, :show]
     end
   end
   
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resource :charges
   resources :subscribes, only: [:create, :destroy]
   resources :completes, only: [:create, :destroy]
+  post '/grade', to: 'quizzes#grade', as: :grade
 
   
   # The priority is based upon order of creation: first created -> highest priority.
