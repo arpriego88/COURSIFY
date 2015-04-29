@@ -110,14 +110,16 @@ GEM
       sass (>= 3.3.0, < 3.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
-    grit (2.5.0)
-      diff-lcs (~> 1.1)
-      mime-types (~> 1.15)
-      posix-spawn (~> 0.3.6)
+    grit (2.0.0)
+      diff-lcs (>= 1.1.2)
+      mime-types (>= 1.15)
     hashie (3.4.1)
     hirb (0.7.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jazz_fingers (1.0.0)
       awesome_print (~> 1.6.1)
@@ -147,10 +149,11 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (1.25.1)
+    mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.6.0)
     multi_json (1.11.0)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
@@ -172,7 +175,6 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.18.1)
-    posix-spawn (0.3.11)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -325,6 +327,7 @@ DEPENDENCIES
   figaro
   font-awesome-rails
   foundation-rails
+  httparty
   jazz_fingers
   jbuilder (~> 2.0)
   jquery-rails
@@ -332,6 +335,7 @@ DEPENDENCIES
   omniauth-twitter
   paperclip (~> 4.2)
   pg
+  pry-byebug
   rails (= 4.2.0)
   rails_12factor
   rspec-rails
