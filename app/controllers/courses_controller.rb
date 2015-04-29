@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  load_and_authorize_resource
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   def index
     @courses = Course.all
