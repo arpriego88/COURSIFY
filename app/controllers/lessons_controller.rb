@@ -42,6 +42,7 @@ class LessonsController < ApplicationController
     @lesson = @course.lessons.find(params[:id])
     if @lesson.update_attributes(lesson_params)
       @lesson.wistia_video = update_video_to_wistia(params["lesson"]["video_url"])
+      @lesson.save
       flash[:success] = "Lesson updated!"
       redirect_to @course
     else
