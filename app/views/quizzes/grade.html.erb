@@ -1,0 +1,5 @@
+<h1>Grade for <%= @quiz.title %> for <%= @lesson.name %></h1>
+<h3><%= @score %>/<%= @results.count %> correct</h3>
+<% @quiz.questions.each do |question| %>
+  <p><%= question.content %> --- <%= @results[question.id.to_s] == 'true' ? 'Correct!' : 'Wrong' %></p>
+<% end %>

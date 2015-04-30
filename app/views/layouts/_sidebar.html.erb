@@ -1,0 +1,19 @@
+<ul class="side-nav" style="position: fixed;">
+  <li><a href="#"><h4 class="text-center"><%= @course.name %></h4></a></li>
+  <% @course.lessons.each do |l| %>
+  <li><a href="", style="font-size: 0.75em;"><%= lesson_complete(l, current_user) %> <%= l.name %></a></li>
+  <% end %>
+  <!-- <li><a data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">Has Dropdown</a>
+    <ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+      <li><a href="#">This is a link</a></li>
+      <li><a href="#">This is another</a></li>
+      <li><a href="#">Yet another</a></li>
+    </ul>
+  </li> -->
+  <hr class="text-center">
+  <div style="text-align: center">
+    <li><%= link_to fa_icon("home 2x"), root_path %></li>
+    <li><%= link_to fa_icon("cog 2x"), edit_user_registration_path %></li>
+    <li><%= link_to fa_icon("question 2x"), '#' %></li>
+  </div>
+</ul>
