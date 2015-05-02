@@ -1,57 +1,44 @@
-<!-- 
-<iframe id="ytplayer" type="text/html" width="100%"
-  src="<%= embed_youtube_player_url(@lesson.video_url)%>"
-  frameborder="0">
-</iframe> -->
 
-<div class="flex-video">
-  <div class="video-container">
-    <%= raw @video %>
-  </div>
+<div class="large-2 columns">
+  <%= render 'layouts/sidebar' %>
 </div>
 
-<span>
 
-  <div class="small-12 large-11 large-centered columns ">
-    <% if @lesson.users.include?(current_user) %>
-      <%= link_to fa_icon("check-circle-o"), complete_path(id: @lesson.id), method: :delete, style: "color: green"%>
-    <% else %>
-      <%= link_to fa_icon("circle-o"), completes_path(lesson_id: @lesson.id), method: :post, style: "color: red"%>
-    <% end %>
-  </div>
-</span>
-<span style="font-size: 1.5em;"><strong><%= @lesson.name %></strong></span> | <span></span>
-<p class="well"><%= @lesson.description %></p>
+<div class="large-10 columns">
+  <div class="hero-vid"><%= raw @video %></div>
 
-<ul class="accordion" data-accordion>
-  <li class="accordion-navigation">
-    <a href="#panel1a">Lesson Notes</a>
-    <div id="panel1a" class="content">
-      <%= @lesson.content %>
-    </div>
-  </li>
-  <li class="accordion-navigation">
-    <a href="#panel2a"><%= @lesson.exercise_name %></a>
-    <div id="panel2a" class="content">
-      <%= @lesson.exercise_content %>
-    </div>
-  </li>
-  <li class="accordion-navigation">
-    <a href="#panel3a">Comments</a>
-    <div id="panel3a" class="content">
-      Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </div>
-  </li>
-  <li class="accordion-navigation">
-    <a href="#panel4a">Quiz</a>
-    <div id="panel4a" class="content"><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %> | <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %>
-    </div>
-  </li>
-</ul>
+  <% if @lesson.users.include?(current_user) %>
+    <%= link_to fa_icon("check-circle-o"), complete_path(id: @lesson.id), method: :delete, style: "color: green"%>
+  <% else %>
+    <%= link_to fa_icon("circle-o"), completes_path(lesson_id: @lesson.id), method: :post, style: "color: red"%>
+  <% end %>
+  <span style="font-size: 1.5em;"><strong><%= @lesson.name %></strong></span> | <span></span>
+  <p class="well"><%= @lesson.description %></p>
 
-<script>
-var heightMap = $(window).height();
-$('#ytplayer').css('height',heightMap);
-</script
-
+  <ul class="accordion" data-accordion>
+    <li class="accordion-navigation">
+      <a href="#panel1a">Lesson Notes</a>
+      <div id="panel1a" class="content">
+        <%= @lesson.content %>
+      </div>
+    </li>
+    <li class="accordion-navigation">
+      <a href="#panel2a"><%= @lesson.exercise_name %></a>
+      <div id="panel2a" class="content">
+        <%= @lesson.exercise_content %>
+      </div>
+    </li>
+    <li class="accordion-navigation">
+      <a href="#panel3a">Comments</a>
+      <div id="panel3a" class="content">
+        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </div>
+    </li>
+    <li class="accordion-navigation">
+      <a href="#panel4a">Quiz</a>
+      <div id="panel4a" class="content"><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %> | <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %>
+      </div>
+    </li>
+  </ul>
+</div>
 
