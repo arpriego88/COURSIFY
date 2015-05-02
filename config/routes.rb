@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/users/:id' => 'users#profile', as: :profile
   get '/admin' => 'users#admin', as: :admin
   
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+
   resource :charges
   resources :subscribes, only: [:create, :destroy]
   resources :completes, only: [:create, :destroy]
