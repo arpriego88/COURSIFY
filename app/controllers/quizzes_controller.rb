@@ -27,7 +27,7 @@ class QuizzesController < ApplicationController
   def show
     @course = Course.find(params[:course_id])  
     @lesson = Lesson.find(params[:lesson_id])
-    @quiz = @lesson.quizzes.find(params[:id])
+    @quiz = @lesson.quizzes.find_by(params[:quiz_id])
   end
 
   def grade

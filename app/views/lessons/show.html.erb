@@ -4,41 +4,52 @@
 </div>
 
 
-<div class="large-10 columns">
-  <div class="hero-vid"><%= raw @video %></div>
+<div class="small-12 large-10 columns">
 
-  <% if @lesson.users.include?(current_user) %>
-    <%= link_to fa_icon("check-circle-o"), complete_path(id: @lesson.id), method: :delete, style: "color: green"%>
-  <% else %>
-    <%= link_to fa_icon("circle-o"), completes_path(lesson_id: @lesson.id), method: :post, style: "color: red"%>
-  <% end %>
-  <span style="font-size: 1.5em;"><strong><%= @lesson.name %></strong></span> | <span></span>
-  <p class="well"><%= @lesson.description %></p>
+  <!-- Video -->
+  <div class="video_hero">  
+  <iframe seamsless="seamless" src="http://fast.wistia.net/embed/iframe/<%= @file['hashed_id'] %>" style="background: #FFFFFF;" allowtransparency="true" frameborder="0" scrolling=" no" class="wistia_embed" name="wistia_embed"></iframe>
+  </div>
 
-  <ul class="accordion" data-accordion>
-    <li class="accordion-navigation">
-      <a href="#panel1a">Lesson Notes</a>
-      <div id="panel1a" class="content">
-        <%= @lesson.content %>
-      </div>
-    </li>
-    <li class="accordion-navigation">
-      <a href="#panel2a"><%= @lesson.exercise_name %></a>
-      <div id="panel2a" class="content">
-        <%= @lesson.exercise_content %>
-      </div>
-    </li>
-    <li class="accordion-navigation">
-      <a href="#panel3a">Comments</a>
-      <div id="panel3a" class="content">
-        Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </div>
-    </li>
-    <li class="accordion-navigation">
-      <a href="#panel4a">Quiz</a>
-      <div id="panel4a" class="content"><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %> | <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %>
-      </div>
-    </li>
+  <!-- Title and Complete button -->
+  <div class="clearfix" style="margin-top: 10px;">
+    <div class="left">
+    <span><% if @lesson.users.include?(current_user) %>
+      <%= link_to fa_icon("check-circle-o"), complete_path(id: @lesson.id), method: :delete, style: "color: green"%>
+    <% else %>
+      <%= link_to fa_icon("circle-o"), completes_path(lesson_id: @lesson.id), method: :post, style: "color: red"%>
+    <% end %>
+    <strong><%= @lesson.name %></strong> | <%= (@video_time/60).to_i %>:<%=(@video_time % 60).to_i %></span>
+    </div>
+    <div class="right">
+      <%= link_to "Complete and Continue", "#", class: "button primary tiny" %>
+    </div>
+  </div>
+
+  <!-- Content -->
+
+  <ul class="tabs" data-tab>
+    <li class="tab-title active"><a href="#panel1">Notes</a></li>
+    <li class="tab-title"><a href="#panel2">Exercise</a></li>
+    <li class="tab-title"><a href="#panel3">Discussion</a></li>
+    <li class="tab-title"><a href="#panel4">Quiz</a></li>
   </ul>
-</div>
+  <div class="tabs-content">
+    <div class="content active" id="panel1">
+      <p><%= @lesson.content %></p>
+    </div>
+    <div class="content" id="panel2">
+      <h3><%= @lesson.exercise_name %></h3>
+      <p><%= @lesson.exercise_content %></p>
+    </div>
+    <div class="content" id="panel3">
+      <p>Comments.</p>
+    </div>
+    <div class="content" id="panel4">
+    <%#= render 'quizzes/qshow', locals: { course_id: @course.id, lesson_id: @lesson.id } %>
+    <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %> | <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %></p>
+    </div>
+  </div>
+
+</div><!-- columns -->
 
