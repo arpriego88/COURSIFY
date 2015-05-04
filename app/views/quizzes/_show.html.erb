@@ -1,7 +1,7 @@
 <div class="large-8 large-centered columns panel">
   <h1 class="text-center">Quiz <%= @quiz.title %> for <%= @lesson.name %></h1>
 
-  <%= form_for :submission, url: grade_path  do |f|%>
+  <%= form_for :submission, url: grade_path, remote: true  do |f|%>
     <% @quiz.questions.each do |question| %>
       <p><%= question.content %></p>
       <% question.answers.each do |answer| %>
@@ -14,3 +14,4 @@
     <%= f.submit 'See Results'%>
   <% end %>
 </div>
+<div id='grade-form' style='display:none;'></div>
