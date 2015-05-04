@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'pages#index'
  
   resources :courses do
@@ -12,7 +11,11 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "omniauth_callbacks" }
   get '/users/:id' => 'users#profile', as: :profile
   get '/admin' => 'users#admin', as: :admin
-  
+  get '/about' => 'static_pages#about', as: :about
+  get '/contact' => 'static_pages#contact', as: :contact
+
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+
   resource :charges
   resources :subscribes, only: [:create, :destroy]
   resources :completes, only: [:create, :destroy]
