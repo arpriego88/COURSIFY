@@ -1,5 +1,7 @@
-<h1>Grade for <%= @quiz.title %> for <%= @lesson.name %></h1>
-<h3><%= @score %>/<%= @results.count %> correct</h3>
-<% @quiz.questions.each do |question| %>
-  <p><%= question.content %> --- <%= @results[question.id.to_s] == 'true' ? 'Correct!' : 'Wrong' %></p>
-<% end %>
+<div class="large-8 large-centered columns panel">
+  <h1 class="text-center">Grade for <%= @quiz.title %> for <%= @lesson.name %></h1>
+  <h3 class="text-center"><span class="label alert"><%= @score %>/<%= @results.count %> correct</span></h3>
+  <% @quiz.questions.each do |question| %>
+    <p><%= question.content %> --- <%= @results[question.id.to_s] == 'true' ? 'Correct!' : 'Wrong' %></p>
+  <% end %>
+</div>
