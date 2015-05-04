@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
+ *= require 'masonry/transitions'
  *= require font-awesome
 
 
@@ -26,23 +27,22 @@ h1, h2, h3, h4, h5, h6, span {
   text-decoration: none;
 }
 
+ul {
+  list-style-type: none;
+}
+
 p, button {
   font-family: 'Oswald', sans-serif;
   font-weight: normal;
   text-decoration: none;
 }
 
-.box {
-  margin-top: 5px;
-}
-.box img {
-  width: 100%;
-}
 
 .spacing {
   margin-top: 75px;
   margin-bottom: 15px;
 }
+
 
 .hero {
   background: url('http://wallpoper.com/images/00/34/39/15/circuit-pcb_00343915.jpg') no-repeat center center;
@@ -125,6 +125,29 @@ p, button {
      position: relative;
      background: #f55;
  }
+
+ ul#drop1.f-dropdown.open.f-open-dropdown {
+    max-width: 100%;
+ }
+
+
+#pins {
+  margin: 0 auto;
+}
+
+.box {
+  margin: 5px;
+  width: 300px;
+}
+
+#drips {
+  margin: 0 auto;
+}
+
+.vox {
+  margin: 5px;
+  width: 300px;
+}
 
 
 
