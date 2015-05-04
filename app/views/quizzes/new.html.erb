@@ -11,7 +11,8 @@
         <%= answer.text_field :content, autofocus: true, placeholder: 'Answer'%>
     <% end %><hr>
       <% end %>
-      
+      <%= hidden_field_tag :lesson_id, @lesson.id %>
+      <%= hidden_field_tag :quiz_id, @quiz.id %>
       <%= f.submit class: "small button primary expand" %>
   <% end %>
 

@@ -1,23 +1,18 @@
 <section class="hero">
   <div class="row intro">
-    <div class="small-centered medium-uncentered medium-6 large-7 columns">
-      <h1><%= @course.name %></h1>
-      <p><%= @course.description %></p>
+    <div class="small-12 small-centered columns">
+      <h1 class="text-center"><%= course_complete_check(@course, current_user.id) %> <%= @course.name %></h1>
+      <p class="text-center"><%= @course.description %></p>
     </div>
-    <div class="small-centered medium-uncentered medium-6 large-5 columns">
+   <!--  <div class="small-centered medium-uncentered medium-6 large-5 columns">
       <div class="tech-img"></div>
-    </div>
+    </div> -->
   </div>
 </section>
 
 
-  <div class="small-12 medium-12 large-10 large-centered columns">
-
-    <h2 class="text-center">
-      <%= course_complete_check(@course, current_user.id) %>
-    </h2>
-
-    <% @course.lessons.each do |lesson| %>
+  <div class="small-12 medium-12 large-10 large-centered columns" style="margin-top: 100px;">
+    <% @course.lessons.reverse.each do |lesson| %>
       <div class="panel">
         <div class="clearfix">
           <div class="left">
@@ -44,6 +39,6 @@
 
     <%= link_to 'Back', courses_path, class: "small button primary" %>
 
-  </div><!-- columns -->
+</div><!-- columns -->
 
 
