@@ -9,7 +9,7 @@
   <!-- Video -->
   <div class="video_hero">  
     <% if @file %>
-  <iframe seamsless="seamless" src="http://fast.wistia.net/embed/iframe/<%= @file['hashed_id'] %>" style="background: #FFFFFF;" allowtransparency="true" frameborder="0" scrolling=" no" class="wistia_embed" name="wistia_embed"></iframe>
+      <iframe seamsless="seamless" src="http://fast.wistia.net/embed/iframe/<%= @file['hashed_id'] %>" style="background: #FFFFFF;" allowtransparency="true" frameborder="0" scrolling=" no" class="wistia_embed" name="wistia_embed"></iframe>
     <% else %>
       Video processing...
     <% end %>

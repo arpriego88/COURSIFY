@@ -80,10 +80,12 @@
   </div><!-- drips -->
 </div><!-- large-10 -->
 
-
+<div class="text-center">
 <% if current_user.courses.present? == false %>
   <p>You haven't subscribed to any courses yet ya silly goose! Check out our <%= link_to "courses", courses_path %></p>
 <% end %>
+</div>
+
 
 
 
