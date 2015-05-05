@@ -2,6 +2,7 @@ class LessonsController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_course
+  respond_to :html, :js
 
 
   def show

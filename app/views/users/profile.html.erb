@@ -13,7 +13,7 @@
   <div id="pins" class="transitions-enabled">
     <div class="box">
       <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
-        <%= link_to fa_icon("plus-circle 5x"), new_course_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;" %>
+        <%= link_to fa_icon("plus-circle 5x"), new_course_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;", remote: true %>
       </div><!-- panel-dashed -->
     </div><!-- dashed-block -->
     <% @courses.each do |course| %>
@@ -23,7 +23,7 @@
             <div class='clearfix'>
               <div class="right">
                 <% if can? :manage, course  %>
-                  <%= link_to 'Edit', edit_course_path(course), class: 'label primary tiny' %></li>
+                  <%= link_to 'Edit', edit_course_path(course), class: 'label primary tiny', remote: true %></li>
                   <%= link_to 'Delete', course, method: :delete, class: 'label primary tiny' %></li>
                 <% end %>
               </div><!-- right -->
@@ -39,34 +39,10 @@
       </div><!-- box -->
     <% end %><!-- @courses do block -->
   </div><!-- pins -->
+  <div id="course-form" style="display:none;"></div>
+  <div id="course_edit-form" style="display:none;"></div>
 </div><!-- large 10 -->
 
-<div id="hideme", class="large-10 large-centered columns">
-<hr class="spacing">
-  <!-- Wistia Stats and Heat Maps -->
-  <% @courses.each do |course| %>
-    <% if can? :manage, course  %>
-      <% course.lessons.each do |lesson| %>
-        <div class="panel">
-          <h3>
-            <%= lesson.name %>
-            <p>Stats 
-              <% Wistia::Stats::Media.get(lesson.wistia_video).each do |key, stat| %>
-                <%= key %> : <%= stat %> | 
-              <% end %>
-            </p> 
-            Heat Maps 
-            <p>
-              <% Wistia::Stats::Event.where(media_id: lesson.wistia_video).each do |event| %>
-                <iframe src="<%= event.iframe_heatmap_url %>"  height="70" width="100%" style="border: solid 2px black;"></iframe>
-              <% end %>
-            </p>
-          </h3>
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
 
   <!-- Lists all Courses the user is subscibed to -->
 <div class="large-10 large-centered columns">
@@ -111,23 +87,5 @@
   <p>You haven't subscribed to any courses yet ya silly goose! Check out our <%= link_to "courses", courses_path %></p>
 <% end %>
 
-<script>
-$(document).ready(function(){
-  $('#hideme').hide();
-  $('#hideme1').hide();
-  $('#nextnext').click(function(){
-    $('#hideme').show();
-    // $('#hideme1').show();
-    $('#nextnext').hide();
-    $('#nextnext1').show();
-    // $('#measurements').hide();
-    $('#submit').show();
-  });
-  $('#nextnext1').click(function(){
-    $('#hideme').hide();
-    $('#measurements').hide();
-    $('#hideme1').show();
-  });
-});
-</script>
+
 

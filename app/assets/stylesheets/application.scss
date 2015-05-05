@@ -51,16 +51,16 @@ p, button {
   background: url('http://wallpoper.com/images/00/34/39/15/circuit-pcb_00343915.jpg') no-repeat center center;
   background-size: cover;
   height: 50vh;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 42%;
-    left: 0;
-    background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
-    opacity: .8; 
-  }
+  // &:before {
+  //   content: '';
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   bottom: 42%;
+  //   left: 0;
+  //   background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
+  //   opacity: .8; 
+  // }
   .intro {
     padding: 3rem;
     position: relative;

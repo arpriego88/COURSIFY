@@ -30,11 +30,12 @@
     <% if current_user.teacher? || current_user.admin?  %>
       <div class="vox">
         <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
-          <%= link_to fa_icon("plus-circle 5x"), new_course_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;" %>
+          <%= link_to fa_icon("plus-circle 5x"), new_course_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;", remote: true %>
         </div><!-- panel-dashed -->
       </div><!-- dashed vox -->
     <% end %>
   </div><!-- drips -->
+  <div id="course-form" style="display:none;"></div>
 </div><!-- large-10 -->
 
 
