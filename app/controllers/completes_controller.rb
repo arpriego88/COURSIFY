@@ -4,7 +4,11 @@ class CompletesController < ApplicationController
   def create
     @lesson = Lesson.find(params[:lesson_id])
     @complete = Complete.create(user_id: current_user.id, lesson_id: @lesson.id)
-    redirect_to request.referer
+    if params['from_lesson'] == 'true'
+      redirect_to course_lesson_path(@lesson.course, @lesson.next_lesson)
+    else
+      redirect_to request.referer
+    end
   end
 
   def destroy

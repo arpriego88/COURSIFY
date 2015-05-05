@@ -15,20 +15,20 @@
   <div class="clearfix" style="margin-top: 10px;">
     <div class="left">
     <span><% if @lesson.users.include?(current_user) %>
-      <%= link_to fa_icon("check-circle-o"), complete_path(id: @lesson.id), method: :delete, style: "color: green"%>
+      <i class="fa fa-check-circle-o", style="color: green"></i>
     <% else %>
-      <%= link_to fa_icon("circle-o"), completes_path(lesson_id: @lesson.id), method: :post, style: "color: red"%>
+      <i class="fa fa-circle-o", style="color: red"></i>
     <% end %>
     <strong><%= @lesson.name %></strong> | <%= (@video_time/60).to_i %>:<%=(@video_time % 60).to_i %></span>
-    </div>
-    <div class="right">
+    </div><!-- left -->
+    <div class="right" style="margin-right: 5px;">
     <% if @lesson.next_lesson.present? %>
-      <%= link_to "Complete & Continue", course_lesson_path(@course, @lesson.next_lesson), :class => 'button small' %>
+      <%= link_to "Complete & Continue", completes_path(lesson_id: @lesson.id, from_lesson: true ), method: :post, :class => 'button small' %>
       <% else %>
       <%= link_to "Finish Course", courses_path, :class => 'button small' %>
     <% end %>
-    </div>
-  </div>
+    </div><!-- right -->
+  </div><!-- clearfix -->
 
   <!-- Content -->
 

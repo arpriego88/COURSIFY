@@ -7,8 +7,20 @@
   </div>
 </section>
 
+  
+ 
+<% @count = 0.0 %>
+<% @course.lessons.each do |lesson| %>
+  <% if lesson.users.include?(current_user) %>
+    <% @count += 1.0 %>
+  <% end %>
+<% end %>
+<% @percent = ((@count / @course.lessons.count ) * 100).round(0) %>
 
   <div class="small-12 medium-12 large-10 large-centered columns" style="margin-top: 100px;">
+    <div class="progress">
+      <span class="meter text-center" style="width: <%= @percent %>%"><p style="color: white; font-size: .75em;"><%= @percent %>% complete!</p></span>
+    </div>
     <% @counter = 0 %>
     <% @course.lessons.reverse.each do |lesson| %>
       <div class="panel">
