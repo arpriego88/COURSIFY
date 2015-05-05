@@ -1,0 +1,2 @@
+console.log('destroy_subscribe');
+$('#subscribe-<%= @course.id %>').html('<%= link_to "Subscribe", subscribes_path(course_id: @course.id), method: :post, remote: true, class: "label primary tiny"%>');
