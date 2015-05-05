@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
+  respond_to :html, :js
 
   def index
     @courses = Course.all
@@ -46,6 +47,11 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.destroy
     redirect_to courses_path
+  end
+
+  def heat_map
+    # @count = params[:counter]
+    @lesson = Lesson.find(params[:lesson_id])
   end
 
   private

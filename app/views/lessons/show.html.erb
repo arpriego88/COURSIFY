@@ -22,7 +22,11 @@
     <strong><%= @lesson.name %></strong> | <%= (@video_time/60).to_i %>:<%=(@video_time % 60).to_i %></span>
     </div>
     <div class="right">
-      <%= link_to "Complete and Continue", "#", class: "button primary tiny" %>
+    <% if @lesson.next_lesson.present? %>
+      <%= link_to "Complete & Continue", course_lesson_path(@course, @lesson.next_lesson), :class => 'button small' %>
+      <% else %>
+      <%= link_to "Finish Course", courses_path, :class => 'button small' %>
+    <% end %>
     </div>
   </div>
 

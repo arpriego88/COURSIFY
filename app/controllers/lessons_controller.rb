@@ -5,6 +5,7 @@ class LessonsController < ApplicationController
 
 
   def show
+    @lessons = @course.lessons.all
     @lesson = @course.lessons.find(params[:id])
     if @lesson.wistia_video != nil
       @file = Wistia::Media.find(@lesson.wistia_video).attributes
