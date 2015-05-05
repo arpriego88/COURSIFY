@@ -46,14 +46,15 @@
       <p>Comments.</p>
     </div>
     <div class="content" id="panel4">
+    <% if current_user.teacher? || current_user.admin? %>
     <%#= render 'quizzes/qshow', locals: { course_id: @course.id, lesson_id: @lesson.id } %>
-    <% if @lesson.users.include?(current_user) %>
     <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %>
+      <div id="quiz_form" style="display:none;"></div>
       <% else %>
      <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %></p>
      <div id="quiz_form" style="display:none;"></div>
-    </div>
     <% end %>
+    </div>
   </div>
 
 </div><!-- columns -->
