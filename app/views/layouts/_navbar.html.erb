@@ -19,7 +19,7 @@
         <% if user_signed_in? %>
           <li><%= link_to current_user.name, profile_path(current_user) %></li>
           <li><%= link_to fa_icon("gear"), edit_user_registration_path %></li>
-          <li><%= link_to fa_icon("external-link"), destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to fa_icon("sign-out"), destroy_user_session_path, method: :delete %></li>
         <% else %>
               <li class="has-form">
                 <li><%= link_to "Sign In", new_user_session_path, class: 'button' %></li>

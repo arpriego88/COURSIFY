@@ -1,7 +1,6 @@
-<div class="row">
-  <div class="panel large-8 large-centered columns">
+<div id="newModal" class="reveal-modal medium" data-reveal aria-labelledby="newCourse" aria-hidden="true" role="dialog">
   <h2 class="text-center">New Lesson</h2></br>
-  <%= form_for [@course, @lesson], input_html: {multipart: true} do |f| %>
+    <%= form_for [@course, @lesson], input_html: {multipart: true} do |f| %>
 
       <div class="small-12 large-11 large-centered columns ">
         <%= f.text_field :name, autofocus: true, placeholder: 'Name' %>
@@ -31,15 +30,10 @@
         <%= f.text_area :exercise_content, placeholder: "Exercise content" %>
       </div>
 
-      <div class="small-12 large-11 large-centered columns">
-      <%= f.check_box :complete, autofocus: true %>
-      <%= f.label :complete %>
-      </div>
+      <%= f.hidden_field :teacher_id, value: current_user.id, class: 'form-control'  %>
 
       <div class="small-12 large-11 large-centered columns "> 
-        <%= f.submit "Update Lesson", class: "small button primary expand" %>
+        <%= f.submit "Create Lesson", class: "small button primary expand" %>
       </div>
-
     <% end %>
-  </div>
 </div>

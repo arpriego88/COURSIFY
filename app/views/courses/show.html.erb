@@ -32,7 +32,7 @@
           </div>
           <div class="right">
             <% if can? :manage, lesson %>
-              <%= link_to 'Edit', edit_course_lesson_path(@course, lesson), class: "tiny label" %> 
+              <%= link_to 'Edit', edit_course_lesson_path(@course, lesson), class: "tiny label", remote: true %> 
               <%= link_to 'Delete', course_lesson_path(@course, lesson), method: :delete, class: "tiny label alert" %>
               <%= link_to  'Stats', course_heat_map_path(@course, lesson),  remote: true, class: 'expandable tiny label', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Calculating Stats..."} %>
             <% end %>
@@ -42,16 +42,19 @@
           
           
         </div>
+        <div id="lesson_edit-form" style="display:none;"></div>
       </div>
       <% @counter += 1 %>
     <% end %>
     <% if can? :manage, @course %>
-      <%= link_to new_course_lesson_path(@course) do %>
+      <%= link_to new_course_lesson_path(@course), remote: true do %>
         <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px;">
           <i class="fa fa-plus-circle fa-1x" style="color: #00ade5;"></i>
         </div><!-- panel-dashed -->
       <% end %><!-- link_to do block -->
     <% end %>
+
+    <div id="lesson-form" style="display:none;"></div>
 
 </div><!-- columns -->
 
