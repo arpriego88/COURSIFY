@@ -1,4 +1,4 @@
-
+<div class="row">
 <div class="large-2 columns">
   <%= render 'layouts/sidebar' %>
 </div>
@@ -51,9 +51,11 @@
     </div>
     <div class="content" id="panel4">
     <%#= render 'quizzes/qshow', locals: { course_id: @course.id, lesson_id: @lesson.id } %>
-    <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %> | <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id) %></p>
+    <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %> |
+     <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %></p>
+     <div id="quiz_form" style="display:none;"></div>
     </div>
   </div>
 
 </div><!-- columns -->
-
+</div><!-- row -->

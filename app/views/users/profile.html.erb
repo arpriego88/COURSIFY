@@ -13,7 +13,7 @@
   <div id="pins" class="transitions-enabled">
     <div class="box">
       <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
-        <i class="fa fa-plus-circle fa-5x" style="color: #00ade5; position: absolute; top: 40%; left: 40%;"></i>
+        <%= link_to fa_icon("plus-circle 5x"), new_course_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;" %>
       </div><!-- panel-dashed -->
     </div><!-- dashed-block -->
     <% @courses.each do |course| %>
@@ -30,7 +30,7 @@
             </div><!-- clearfix -->
             <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
               <div>
-                <span class="label primary" style="font-size: 1.5em;"><%= course.name %></span>
+                <%= link_to course.name, course_path(course), class: 'label primary tiny', style: 'font-size: 1.5em' %>
                 <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
               </div>
             </div><!-- position: fixed -->
@@ -39,7 +39,7 @@
       </div><!-- box -->
     <% end %><!-- @courses do block -->
   </div><!-- pins -->
-</div>
+</div><!-- large 10 -->
 
 <div id="hideme", class="large-10 large-centered columns">
 <hr class="spacing">
@@ -75,31 +75,35 @@
   <hr><!-- horizontal line -->
 
   <div id="drips" class="transitions-enabled">
+    <div class="vox">
+      <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
+        <%= link_to fa_icon("plus-circle 5x"), courses_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;" %>
+      </div><!-- panel-dashed -->
+    </div><!-- dashed-block -->
     <% current_user.courses.each do |course| %>
       <div class="vox">
         <%= link_to course_path(course) do %>
           <div class="panel" style="background-image: url(<%= course.image.url %>); height: 400px;">
-            <h3 class="text-center">
-              <%= course_complete_check(course, current_user.id) %>
-              <%= course.name %>
-            </h3>
-
-            <p><%= course.description %></p>
-        
-            <% if course.users.include?(current_user) %>
-              <%= link_to "unsubscribe", subscribe_path(id: course.id), method: :delete, class: 'button alert round tiny'%>
-            <% else %>
-              <%= link_to "Subscribe", subscribes_path(course_id: course.id), method: :post, class: 'button success round tiny'%>
-            <% end %>
-                 
-            <div class="progress success">
-              <span class="meter" style="width: 85%"></span>
-            </div>
+            <div class='clearfix'>
+              <div class="right">
+                <% if course.users.include?(current_user) %>
+                  <%= link_to "unsubscribe", subscribe_path(id: course.id), method: :delete, class: 'label primary tiny'%>
+                <% else %>
+                  <%= link_to "Subscribe", subscribes_path(course_id: course.id), method: :post, class: 'label primary tiny'%>
+                <% end %>
+              </div><!-- right -->
+            </div><!-- clearfix -->
+            <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
+              <div>
+                <span class="label primary" style="font-size: 1.5em;"><%= course.name %></span>
+                <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
+              </div>
+            </div><!-- position absolute -->                 
           </div><!-- panel -->
-        <% end %>
-      </div><!-- box -->
+        <% end %><!-- link_to course do block -->
+      </div><!-- vox -->
     <% end %><!-- current_user do block -->
-  </div><!-- pins -->
+  </div><!-- drips -->
 </div><!-- large-10 -->
 
 
