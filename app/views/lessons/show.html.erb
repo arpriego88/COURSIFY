@@ -47,10 +47,13 @@
     </div>
     <div class="content" id="panel4">
     <%#= render 'quizzes/qshow', locals: { course_id: @course.id, lesson_id: @lesson.id } %>
-    <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %> |
+    <% if @lesson.users.include?(current_user) %>
+    <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %>
+      <% else %>
      <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %></p>
      <div id="quiz_form" style="display:none;"></div>
     </div>
+    <% end %>
   </div>
 
 </div><!-- columns -->
