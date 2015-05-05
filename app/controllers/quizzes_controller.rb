@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
-  
+  respond_to :html, :js
 
   def new
     @course = Course.find(params[:course_id])
