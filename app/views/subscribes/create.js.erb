@@ -1,0 +1,2 @@
+console.log('create_subscribe');
+$('#subscribe-<%= @course.id %>').html('<%= link_to "Unsubscribe", subscribe_path(id: @course.id), method: :delete, remote: true, class: "label primary tiny"%>');
