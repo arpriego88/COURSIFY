@@ -1,3 +1,4 @@
+<div class="row">
 <div class="small-12 medium-6 large-6 columns text-center">
   <span style="font-size: 4em;">ZERO to HERO</span>
   <h1>in</h1> 
@@ -20,27 +21,27 @@
 <hr class="spacing">
 <h3 style="margin-bottom: 25px;">Featured Courses</h3>
 
- <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-  <% @courses.each do |course| %>
-    <li>
-      <div class="panel box">
-        <%= link_to course_path(course) do %>
-          <%= image_tag course.image.url :medium %>
-          
-          <h3 class="text-center">
-            <%= course.name %>
-          </h3>
-          
-          <p><%= course.description %></p>
-          
-          <% if course.users.include?(current_user) %>
-            <%= link_to "unsubscribe", subscribe_path(id: course.id), method: :delete, class: 'button alert expand'%>
-          <% else %>
-            <%= link_to "Subscribe", subscribes_path(course_id: course.id), method: :post, class: 'button success expand'%>
-          <% end %>
-        <% end %>
-      </div>
-    </li>
-  <% end %>
-</ul>
-
+<div id="drips" class="transitions-enabled">
+      <% @courses.each do |course| %>
+        <div class="vox">
+          <%= link_to course_path(course) do %>
+            <div class="panel" style="background-image: url(<%= course.image.url %>); height: 400px;">
+              <div class='clearfix'>
+                <div class="right">
+                  <div id="subscribe-<%= course.id %>">
+                  <%= render partial: 'courses/subscribe_btn', locals: {course: course} %>
+                  </div>
+                </div><!-- right -->
+              </div><!-- clearfix -->
+              <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
+                <div>
+                  <%= link_to course.name, course_path(course), class: 'label primary tiny', style: 'font-size: 1.5em' %>
+                  <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
+                </div>
+              </div><!-- position absolute -->                 
+            </div><!-- panel -->
+          <% end %><!-- link_to course do block -->
+        </div><!-- vox -->
+      <% end %><!-- current_user do block -->
+    </div><!-- drips -->
+</div>

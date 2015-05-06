@@ -37,6 +37,16 @@ p, button {
   text-decoration: none;
 }
 
+.label {
+  color: white;
+}
+.label:hover {
+  color: white;
+}
+.label.a:hover, .label.a:focus {
+  color: white;
+}
+
 
 .spacing {
   margin-top: 75px;
