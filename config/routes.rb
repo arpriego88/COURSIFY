@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   root 'pages#index'
  
   resources :courses do
@@ -8,7 +10,7 @@ Rails.application.routes.draw do
   end
   
   resources :exercises
-  devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :controllers => { registrations: 'registrations', sessions: 'sessions', :omniauth_callbacks => "omniauth_callbacks" }
   get '/users/:id' => 'users#profile', as: :profile
   get '/admin' => 'users#admin', as: :admin
   get '/about' => 'static_pages#about', as: :about

@@ -22,7 +22,7 @@
           <li><%= link_to fa_icon("sign-out"), destroy_user_session_path, method: :delete %></li>
         <% else %>
               <li class="has-form">
-                <li><%= link_to "Sign In", new_user_session_path, class: 'button' %></li>
+                <li><%= link_to "Sign In", new_user_session_path, class: 'button', remote: true %></li>
               </li>
             <% end %>
           </ul>
@@ -31,3 +31,5 @@
     </section>
   </nav>
 </div>
+
+<div id="login-form"></div>
