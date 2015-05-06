@@ -43,8 +43,9 @@ p, button {
 .label:hover {
   color: white;
 }
-.label.a:hover, .label.a:focus {
+a:focus {
   color: white;
+  text-decoration: none;
 }
 
 

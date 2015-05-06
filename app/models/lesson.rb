@@ -1,5 +1,5 @@
 class Lesson < ActiveRecord::Base
-  has_many :completes
+  has_many :completes, dependent: :destroy
   has_many :users, through: :completes
   belongs_to :course
   has_many :exercises

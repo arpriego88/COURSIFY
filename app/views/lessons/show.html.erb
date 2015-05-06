@@ -1,8 +1,4 @@
 
-<div  id="slider" style="z-index: 999; position: absolute;">
-  <%= render 'layouts/sidebar' %>
-</div>
-
 <div class="row">
   <div class="small-12 large-12 large-centered columns">
 
@@ -60,6 +56,8 @@
       <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %>
         <div id="quiz_form" style="display:none;"></div>
         <% else %>
+       <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %>
+        <div id="quiz_form" style="display:none;"></div>
        <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %></p>
        <div id="quiz_form" style="display:none;"></div>
       <% end %>
@@ -70,11 +68,5 @@
 </div><!-- row -->
 
 <script>
-$(document).ready(
-    function(){
-        $('#slideLeft').click(
-            function(){
-                $(this).animate({right: '200px'});
-            });
-    });
+  $(document).foundation();
 </script>

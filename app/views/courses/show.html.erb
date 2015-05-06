@@ -15,7 +15,12 @@
     <% @count += 1.0 %>
   <% end %>
 <% end %>
-<% @percent = ((@count / @course.lessons.count ) * 100).round(0) %>
+
+<% if @course.lessons.present? %>
+  <% @percent = ((@count / @course.lessons.count ) * 100).round(0) %>
+<% else %>
+  <% @percent = 10 %>
+<% end %>
 
   <div class="small-12 medium-12 large-12 large-centered columns" style="margin-top: 50px;">
     <div class="progress">
@@ -34,12 +39,12 @@
             <% if can? :manage, lesson %>
               <%= link_to 'Edit', edit_course_lesson_path(@course, lesson), class: "tiny label", remote: true %> 
               <%= link_to 'Delete', course_lesson_path(@course, lesson), method: :delete, class: "tiny label alert" %>
-              <%= link_to  'Stats', course_heat_map_path(@course, lesson),  remote: true, class: 'expandable tiny label stats-btn', id: "statsBtn#{lesson.id}" %>
+              <%= link_to  'Stats', course_heat_map_path(@course, lesson),  remote: true, class: 'expandable tiny label stats-btn', data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."}  %>
             <% end %>
           </div><!-- right -->
         </div><!-- left -->
+        
         <div id="<%="stats-#{lesson.id}"%>" style="margin-top: 25px; display: none;">
-        <div id="lesson-form"></div>
           
         </div>
         <div id="lesson_edit-form"></div>
@@ -54,8 +59,6 @@
         </div><!-- panel-dashed -->
       <% end %><!-- link_to do block -->
     <% end %>
-
-
-
   </div><!-- columns -->
+  <div id="lesson-form"></div>
 </div>
