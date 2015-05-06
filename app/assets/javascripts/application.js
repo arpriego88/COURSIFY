@@ -17,3 +17,9 @@
 //= require_tree .
 
 $(document).foundation();
+
+$('.stats-btn').click(function(){
+  $(this).html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+});
+
+

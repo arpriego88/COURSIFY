@@ -1,0 +1,9 @@
+<h5>Lesson Stats</h5>
+<% Wistia::Stats::Media.get(@lesson.wistia_video).each do |key, stat| %>
+  <%= key %> : <%= stat %> | 
+<% end %>
+<hr>
+<h5>Lesson Video Heatmaps</h5>
+<% Wistia::Stats::Event.where(media_id: @lesson.wistia_video).each do |event| %>
+  <iframe src="<%= event.iframe_heatmap_url %>"  height="70" width="100%" style="border: solid 2px black;"></iframe>
+<% end %>

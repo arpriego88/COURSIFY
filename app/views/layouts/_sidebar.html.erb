@@ -1,6 +1,8 @@
-<ul class="side-nav" style="position: fixed;">
-  <li><a href="#"><h4 class="text-center"><%= @course.name %></h4></a></li>
+<ul class="side-nav"  style="position: fixed;">
+  <li><h4 class="text-center"><%= link_to @course.name, course_path(@course) %></h4></li>
   <% @course.lessons.reverse.each do |l| %>
-  <li><a href="", style="font-size: 0.75em;"><%= lesson_complete(l, current_user) %> <%= l.name %></a></li>
+    <%= link_to course_lesson_path(@course, l) do %>
+    <li><span style="margin-left: 25px;"><%= lesson_complete(l, current_user) %> <%= l.name %></span></li>
+    <% end %>
   <% end %>
 </ul>

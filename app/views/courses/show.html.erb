@@ -1,17 +1,27 @@
-<section class="hero">
+<section class="hero" style="background-image: url(<%= @course.image.url %>);">
   <div class="row intro">
     <div class="small-12 small-centered columns">
-      <h1 class="text-center"><%= course_complete_check(@course, current_user.id) %> <%= @course.name %></h1>
-      <p class="text-center"><%= @course.description %></p>
+      <h1 class="text-center"><span class="label primary" style="font-size: 2em;"><%= @course.name %></span></h1>
+      <p class="text-center"><span class="label primary" style="font-size: 1.5em;"><%= @course.description %></span></p>
     </div>
-   <!--  <div class="small-centered medium-uncentered medium-6 large-5 columns">
-      <div class="tech-img"></div>
-    </div> -->
   </div>
 </section>
 
+  
+ <div class="row">
+<% @count = 0.0 %>
+<% @course.lessons.each do |lesson| %>
+  <% if lesson.users.include?(current_user) %>
+    <% @count += 1.0 %>
+  <% end %>
+<% end %>
+<% @percent = ((@count / @course.lessons.count ) * 100).round(0) %>
 
-  <div class="small-12 medium-12 large-10 large-centered columns" style="margin-top: 100px;">
+  <div class="small-12 medium-12 large-12 large-centered columns" style="margin-top: 50px;">
+    <div class="progress">
+      <span class="meter text-center" style="width: <%= @percent %>%"><p style="color: white; font-size: .75em;"><%= @percent %>% complete!</p></span>
+    </div>
+    <% @counter = 0 %>
     <% @course.lessons.reverse.each do |lesson| %>
       <div class="panel">
         <div class="clearfix">
@@ -24,24 +34,28 @@
             <% if can? :manage, lesson %>
               <%= link_to 'Edit', edit_course_lesson_path(@course, lesson), class: "tiny label", remote: true %> 
               <%= link_to 'Delete', course_lesson_path(@course, lesson), method: :delete, class: "tiny label alert" %>
+              <%= link_to  'Stats', course_heat_map_path(@course, lesson),  remote: true, class: 'expandable tiny label stats-btn', id: "statsBtn#{lesson.id}" %>
             <% end %>
-          </div>
+          </div><!-- right -->
+        </div><!-- left -->
+        <div id="<%="stats-#{lesson.id}"%>" style="margin-top: 25px; display: none;">
+        <div id="lesson-form"></div>
+          
         </div>
-        <div id="lesson_edit-form" style="display:none;"></div>
+        <div id="lesson_edit-form"></div>
       </div>
+      <% @counter += 1 %>
     <% end %>
-
-
-
-
     <% if can? :manage, @course %>
-      <%= link_to 'Add Lesson', new_course_lesson_path(@course), class: "small button primary", remote: true %>
+
+      <%= link_to new_course_lesson_path(@course), remote: true  do %>
+        <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px;">
+          <i class="fa fa-plus-circle fa-1x" style="color: #00ade5;"></i>
+        </div><!-- panel-dashed -->
+      <% end %><!-- link_to do block -->
     <% end %>
 
-    <%= link_to 'Back', courses_path, class: "small button primary" %>
-
-    <div id="lesson-form" style="display:none;"></div>
-
-</div><!-- columns -->
 
 
+  </div><!-- columns -->
+</div>

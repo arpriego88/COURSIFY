@@ -1,39 +1,40 @@
-<div class="large-10 large-centered columns">
-  
-  <h1 style="margin-top: 25px;">Courses</h1>
-  <hr><!-- horizontal line -->
+<div class="row">
+  <div class="large-12 large-centered columns">
+    
+    <h1 style="margin-top: 25px;">Courses</h1>
+    <hr><!-- horizontal line -->
 
-  <div id="drips" class="transitions-enabled">
-    <% @courses.each do |course| %>
-      <div class="vox">
-        <%= link_to course_path(course) do %>
-          <div class="panel" style="background-image: url(<%= course.image.url %>); height: 400px;">
-            <div class='clearfix'>
-              <div class="right">
-                <div id="subscribe-<%= course.id %>">
-                <%= render partial: 'courses/subscribe_btn', locals: {course: course} %>
+    <div id="drips" class="transitions-enabled">
+      <% @courses.each do |course| %>
+        <div class="vox">
+          <%= link_to course_path(course) do %>
+            <div class="panel" style="background-image: url(<%= course.image.url %>); height: 400px;">
+              <div class='clearfix'>
+                <div class="right">
+                  <div id="subscribe-<%= course.id %>">
+                  <%= render partial: 'courses/subscribe_btn', locals: {course: course} %>
+                  </div>
+                </div><!-- right -->
+              </div><!-- clearfix -->
+              <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
+                <div>
+                  <%= link_to course.name, course_path(course), class: 'label primary tiny', style: 'font-size: 1.5em' %>
+                  <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
                 </div>
-              </div><!-- right -->
-            </div><!-- clearfix -->
-            <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
-              <div>
-                <%= link_to course.name, course_path(course), class: 'label primary tiny', style: 'font-size: 1.5em' %>
-                <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
-              </div>
-            </div><!-- position absolute -->                 
-          </div><!-- panel -->
-        <% end %><!-- link_to course do block -->
-      </div><!-- vox -->
-    <% end %><!-- current_user do block -->
-    <% if current_user.teacher? || current_user.admin?  %>
-      <div class="vox">
-        <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
-          <%= link_to fa_icon("plus-circle 5x"), new_course_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;", remote: true %>
-        </div><!-- panel-dashed -->
-      </div><!-- dashed vox -->
-    <% end %>
-  </div><!-- drips -->
-  <div id="course-form" style="display:none;"></div>
-</div><!-- large-10 -->
-
+              </div><!-- position absolute -->                 
+            </div><!-- panel -->
+          <% end %><!-- link_to course do block -->
+        </div><!-- vox -->
+      <% end %><!-- current_user do block -->
+      <% if current_user.teacher? || current_user.admin?  %>
+        <div class="vox">
+          <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
+            <%= link_to fa_icon("plus-circle 5x"), new_course_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;", remote: true %>
+          </div><!-- panel-dashed -->
+        </div><!-- dashed vox -->
+      <% end %>
+    </div><!-- drips -->
+    <div id="course-form" style="display:none;"></div>
+  </div><!-- large-10 -->
+</div><!-- row -->
 
