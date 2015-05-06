@@ -12,7 +12,6 @@ RSpec.feature "Subscription management", :type => :feature do
     expect(page.body).to have_text("Test Course")
     expect(page.body).to have_text("Subscribe")
     click_link 'Subscribe'
-    expect(page.body).to have_text('unsubscribe')
     click_link 'Test Course'
     expect(page.body).to have_text('This is my test description')
     click_link 'Test lesson'

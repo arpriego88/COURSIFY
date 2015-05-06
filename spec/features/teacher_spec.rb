@@ -12,7 +12,6 @@ RSpec.feature "Teacher management", :type => :feature do
     fill_in 'user_email', :with => 'teachertest@test.com'
     fill_in 'user_password', :with => 'password'
     click_button 'Log in'
-    visit '/courses/new'
     click_link 'Who We Are'
     expect(page.body).to have_text('Benjamin Franklin')
     click_link 'Contact'
@@ -23,9 +22,6 @@ RSpec.feature "Teacher management", :type => :feature do
     @lesson = FactoryGirl.create(:lesson)
     @lesson[:course_id] = @course.id
     @lesson.save
-    click_link 'Mr.Test'
-    click_link 'Edit'
-    click_button 'Save Changes'
     click_link 'Mr.Test'
     click_link 'Delete'
   end
