@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+
   def new
     @course = Course.new
   end
@@ -47,6 +48,11 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.destroy
     redirect_to courses_path
+  end
+
+  def heat_map
+    # @count = params[:counter]
+    @lesson = Lesson.find(params[:lesson_id])
   end
 
   private
