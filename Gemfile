@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
 gem 'rails', '4.2.0'
@@ -23,6 +22,7 @@ gem 'paperclip', '~> 4.2'
 gem 'omniauth-twitter'
 gem 'stripe'
 gem 'masonry-rails'
+gem 'aws-sdk', '< 2.0'
 
 
 group :doc do

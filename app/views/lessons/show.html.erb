@@ -1,61 +1,72 @@
+
 <div class="row">
-<div class="large-2 columns">
-  <%= render 'layouts/sidebar' %>
+  <div class="small-12 large-12 large-centered columns">
+
+<!-- Video -->
+<div class="video_hero" >  
+  <% if @file %>
+    <iframe seamsless="seamless" src="http://fast.wistia.net/embed/iframe/<%= @file['hashed_id'] %>" width="1000" height="545" style="background: #FFFFFF;" allowtransparency="true" frameborder="0" scrolling=" no" class="wistia_embed" name="wistia_embed"></iframe>
+  <% else %>
+    Video processing...
+  <% end %>
 </div>
 
 
-<div class="small-12 large-10 columns">
-
-  <!-- Video -->
-  <div class="video_hero">  
-  <iframe seamsless="seamless" src="http://fast.wistia.net/embed/iframe/<%= @file['hashed_id'] %>" style="background: #FFFFFF;" allowtransparency="true" frameborder="0" scrolling=" no" class="wistia_embed" name="wistia_embed"></iframe>
-  </div>
-
-  <!-- Title and Complete button -->
-  <div class="clearfix" style="margin-top: 10px;">
-    <div class="left">
-    <span><% if @lesson.users.include?(current_user) %>
-      <%= link_to fa_icon("check-circle-o"), complete_path(id: @lesson.id), method: :delete, style: "color: green"%>
-    <% else %>
-      <%= link_to fa_icon("circle-o"), completes_path(lesson_id: @lesson.id), method: :post, style: "color: red"%>
-    <% end %>
-    <strong><%= @lesson.name %></strong> | <%= (@video_time/60).to_i %>:<%=(@video_time % 60).to_i %></span>
-    </div>
-    <div class="right">
-      <%= link_to "Complete and Continue", "#", class: "button primary tiny" %>
-    </div>
-  </div>
-
-  <!-- Content -->
-
-  <ul class="tabs" data-tab>
-    <li class="tab-title active"><a href="#panel1">Notes</a></li>
-    <li class="tab-title"><a href="#panel2">Exercise</a></li>
-    <li class="tab-title"><a href="#panel3">Discussion</a></li>
-    <li class="tab-title"><a href="#panel4">Quiz</a></li>
-  </ul>
-  <div class="tabs-content">
-    <div class="content active" id="panel1">
-      <p><%= @lesson.content %></p>
-    </div>
-    <div class="content" id="panel2">
-      <h3><%= @lesson.exercise_name %></h3>
-      <p><%= @lesson.exercise_content %></p>
-    </div>
-    <div class="content" id="panel3">
-      <p>Comments.</p>
-    </div>
-    <div class="content" id="panel4">
-    <% if current_user.teacher? || current_user.admin? %>
-    <%#= render 'quizzes/qshow', locals: { course_id: @course.id, lesson_id: @lesson.id } %>
-    <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %>
-      <div id="quiz_form" style="display:none;"></div>
+    <!-- Title and Complete button -->
+    <div class="clearfix" style="margin-top: 10px;">
+      <div class="left">
+      <span><% if @lesson.users.include?(current_user) %>
+        <i class="fa fa-check-circle-o", style="color: green"></i>
       <% else %>
-     <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %></p>
-     <div id="quiz_form" style="display:none;"></div>
-    <% end %>
-    </div>
-  </div>
+        <i class="fa fa-circle-o", style="color: red"></i>
+      <% end %>
+      <strong><%= @lesson.name %></strong> | <%= (@video_time/60).to_i %>:<%=(@video_time % 60).to_i %></span>
+      </div><!-- left -->
+      <div class="right">
+      <% if @lesson.next_lesson.present? %>
+        <%= link_to "Complete & Continue", completes_path(lesson_id: @lesson.id, from_lesson: true ), method: :post, data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Completing Lesson..."}, class: 'button small' %>
+        <% else %>
+        <%= link_to "Finish Course", completes_path(lesson_id: @lesson.id, from_lesson: true ), method: :post, data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Finishing Course..."}, :class => 'button small' %>
+      <% end %>
+      </div><!-- right -->
+    </div><!-- clearfix -->
 
-</div><!-- columns -->
+    <!-- Content -->
+
+    <ul class="tabs" data-tab>
+      <li class="tab-title active"><a href="#panel1">Notes</a></li>
+      <li class="tab-title"><a href="#panel2">Exercise</a></li>
+      <li class="tab-title"><a href="#panel3">Discussion</a></li>
+      <li class="tab-title"><a href="#panel4">Quiz</a></li>
+    </ul>
+    <div class="tabs-content">
+      <div class="content active" id="panel1">
+        <p><%= @lesson.content %></p>
+      </div>
+      <div class="content" id="panel2">
+        <h3><%= @lesson.exercise_name %></h3>
+        <p><%= @lesson.exercise_content %></p>
+      </div>
+      <div class="content" id="panel3">
+        <p>Comments.</p>
+      </div>
+      <div class="content" id="panel4">
+      <% if current_user.teacher? || current_user.admin? %>
+      <%#= render 'quizzes/qshow', locals: { course_id: @course.id, lesson_id: @lesson.id } %>
+      <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %>
+        <div id="quiz_form" style="display:none;"></div>
+        <% else %>
+       <p><%= link_to 'New Quiz', new_course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %>
+        <div id="quiz_form" style="display:none;"></div>
+       <%= link_to 'Take Quiz', course_lesson_quiz_path(course_id: @course.id, lesson_id: @lesson.id), remote: true %></p>
+       <div id="quiz_form" style="display:none;"></div>
+      <% end %>
+      </div>
+    </div>
+
+  </div><!-- columns -->
 </div><!-- row -->
+
+<script>
+  $(document).foundation();
+</script>

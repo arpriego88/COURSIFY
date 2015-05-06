@@ -1,0 +1,25 @@
+<div id="newModal" class="reveal-modal medium" data-reveal aria-labelledby="newCourse" aria-hidden="true" role="dialog">
+    <h1 class="text-center"> New Course </h1><br>
+    <%= form_for @course do |f| %>
+      
+      <div class="small-12 large-11 large-centered columns"> 
+        <%= f.text_field :name, autofocus: true, placeholder: 'Course Name' %>
+      </div>
+
+      <div class="small-12 large-11 large-centered columns">
+        <%= f.text_field :description, autofocus: true, placeholder: 'Course Description' %>
+      </div>
+
+      <div class="small-12 large-11 large-centered columns">
+        <%= f.label :image %>
+        <%= f.file_field :image %>
+      </div>
+
+      <%= f.hidden_field :teacher_id, value: current_user.id, class: 'form-control'  %> 
+
+      <div class="small-12 large-11 large-centered columns">
+      <%= f.submit "Create Course", class: "small button primary expand" %>
+      </div>
+
+    <% end %>
+</div>

@@ -1,0 +1,5 @@
+<% if course.users.include?(current_user) %>
+  <%= link_to "Unsubscribe", subscribe_path(id: course.id), method: :delete, remote: true, class: 'label primary tiny'%>
+<% else %>
+  <%= link_to "Subscribe", subscribes_path(course_id: course.id), method: :post, remote: true, class: 'label primary tiny'%>
+<% end %>

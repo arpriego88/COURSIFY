@@ -21,9 +21,6 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 @import "font-awesome";
 
-
-
-
 h1, h2, h3, h4, h5, h6, span {
   font-family: 'Oswald', sans-serif; 
   font-weight: bold;
@@ -40,6 +37,17 @@ p, button {
   text-decoration: none;
 }
 
+.label {
+  color: white;
+}
+.label:hover {
+  color: white;
+}
+a:focus {
+  color: white;
+  text-decoration: none;
+}
+
 
 .spacing {
   margin-top: 75px;
@@ -48,19 +56,19 @@ p, button {
 
 
 .hero {
-  background: url('http://wallpoper.com/images/00/34/39/15/circuit-pcb_00343915.jpg') no-repeat center center;
+  // background: url('http://wallpoper.com/images/00/34/39/15/circuit-pcb_00343915.jpg') no-repeat center center;
   background-size: cover;
   height: 50vh;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 42%;
-    left: 0;
-    background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
-    opacity: .8; 
-  }
+  // &:before {
+  //   content: '';
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   bottom: 42%;
+  //   left: 0;
+  //   background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
+  //   opacity: .8; 
+  // }
   .intro {
     padding: 3rem;
     position: relative;
@@ -145,7 +153,7 @@ p, button {
 
 
 // Footer
-               @mixin vertical-align {
+@mixin vertical-align {
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -155,18 +163,18 @@ p, button {
 
 
 .footer {
-  background-color: #292c2f;
+  background-color: #008CBA;
   text-align: center;
   font-size: 1.2rem;
   padding: 4rem;
   p {
     &.slogan {
-      color: #8d9093;
+      color: #fff;
       font-size: 1.8rem;
       margin: 0 0 1rem;
     }
     &.copyright {
-      color: #8f9296;
+      color: #fff;
       font-size: 0.875rem;
       margin: 0;
     }
@@ -187,4 +195,5 @@ p, button {
     }
   }
 }
+
 

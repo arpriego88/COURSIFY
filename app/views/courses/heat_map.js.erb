@@ -1,0 +1,4 @@
+$('#<%= "stats-#{@lesson.id}" %>' ).html( '<%= j render partial: 'heat_map' %> <span class="button close-stats" >Close</span>' ).slideDown();
+$('.close-stats').click(function(){
+  $(this).parent().slideUp();
+});

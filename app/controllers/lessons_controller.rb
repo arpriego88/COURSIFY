@@ -2,9 +2,11 @@ class LessonsController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_course
+  respond_to :html, :js
 
 
   def show
+    @lessons = @course.lessons.all
     @lesson = @course.lessons.find(params[:id])
     if @lesson.wistia_video != nil
       @file = Wistia::Media.find(@lesson.wistia_video).attributes
@@ -15,7 +17,7 @@ class LessonsController < ApplicationController
   end
 
   def new
-    @lesson = @course.lessons.new
+    @lesson = @course.lessons.build
   end
 
   def create
@@ -41,8 +43,10 @@ class LessonsController < ApplicationController
   def update
     @lesson = @course.lessons.find(params[:id])
     if @lesson.update_attributes(lesson_params)
-      @lesson.wistia_video = update_video_to_wistia(params["lesson"]["video_url"])
-      @lesson.save
+      if params["lesson"]["video_url"]
+        @lesson.wistia_video = update_video_to_wistia(params["lesson"]["video_url"])
+        @lesson.save
+      end
       flash[:success] = "Lesson updated!"
       redirect_to @course
     else

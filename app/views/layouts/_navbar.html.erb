@@ -1,3 +1,4 @@
+<hr style="height: 3px ;border:none; color: #008CBA; background-color: #008CBA; margin: 0;">
 <div class="contain-to-grid">
   <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
@@ -19,10 +20,10 @@
         <% if user_signed_in? %>
           <li><%= link_to current_user.name, profile_path(current_user) %></li>
           <li><%= link_to fa_icon("gear"), edit_user_registration_path %></li>
-          <li><%= link_to fa_icon("external-link"), destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to fa_icon("sign-out"), destroy_user_session_path, method: :delete %></li>
         <% else %>
               <li class="has-form">
-                <li><%= link_to "Sign In", new_user_session_path, class: 'button' %></li>
+                <li><%= link_to "Sign In", new_user_session_path, class: 'button', remote: true %></li>
               </li>
             <% end %>
           </ul>
@@ -31,3 +32,5 @@
     </section>
   </nav>
 </div>
+
+<div id="login-form"></div>

@@ -1,133 +1,86 @@
-<div class="large-10 large-centered columns" data-equalizer data-equalizer-mq="large-up">
-  <div class="text-center">
-      <h1><%= current_user.name %></h1>
-  </div>
+<div class="row">
+  <div class="large-12 large-centered columns">
+    <div class="text-center">
+        <h1><%= current_user.name %></h1>
+    </div>
 
   <!-- Lists all the courses the user created/has admin rights to -->
 
-  <% if @courses.present? %>
-    <h3 style="margin-bottom: 25px;">Your Courses</h3>
-    <hr>
-  <% end %>
+    <% if current_user.teacher? || current_user.admin? %>
+      <h3 style="margin-bottom: 25px;">Your Courses</h3>
+      <hr>
 
-  <div id="pins" class="transitions-enabled">
-    <div class="box">
-      <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
-        <%= link_to fa_icon("plus-circle 5x"), new_course_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;" %>
-      </div><!-- panel-dashed -->
-    </div><!-- dashed-block -->
-    <% @courses.each do |course| %>
-      <div class="box">
-        <%= link_to course_path(course) do %>
-          <div class="panel" style="background-image: url(<%= course.image.url %>); height: 400px;">
-            <div class='clearfix'>
-              <div class="right">
-                <% if can? :manage, course  %>
-                  <%= link_to 'Edit', edit_course_path(course), class: 'label primary tiny' %></li>
-                  <%= link_to 'Delete', course, method: :delete, class: 'label primary tiny' %></li>
-                <% end %>
-              </div><!-- right -->
-            </div><!-- clearfix -->
-            <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
-              <div>
-                <%= link_to course.name, course_path(course), class: 'label primary tiny', style: 'font-size: 1.5em' %>
-                <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
-              </div>
-            </div><!-- position: fixed -->
-          </div><!-- panel -->
-        <% end %><!-- link_to do block -->
-      </div><!-- box -->
-    <% end %><!-- @courses do block -->
-  </div><!-- pins -->
-</div><!-- large 10 -->
-
-<div id="hideme", class="large-10 large-centered columns">
-<hr class="spacing">
-  <!-- Wistia Stats and Heat Maps -->
-  <% @courses.each do |course| %>
-    <% if can? :manage, course  %>
-      <% course.lessons.each do |lesson| %>
-        <div class="panel">
-          <h3>
-            <%= lesson.name %>
-            <p>Stats 
-              <% Wistia::Stats::Media.get(lesson.wistia_video).each do |key, stat| %>
-                <%= key %> : <%= stat %> | 
-              <% end %>
-            </p> 
-            Heat Maps 
-            <p>
-              <% Wistia::Stats::Event.where(media_id: lesson.wistia_video).each do |event| %>
-                <iframe src="<%= event.iframe_heatmap_url %>"  height="70" width="100%" style="border: solid 2px black;"></iframe>
-              <% end %>
-            </p>
-          </h3>
-        </div>
-      <% end %>
+      <div id="pins" class="transitions-enabled">
+        <div class="box">
+          <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
+          <%= link_to fa_icon("plus-circle 5x"), new_course_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;", remote: true %>
+          </div><!-- panel-dashed -->
+        </div><!-- dashed-block -->
+        <% @courses.each do |course| %>
+          <div class="box">
+            <%= link_to course_path(course) do %>
+              <div class="panel" style="background-image: url(<%= course.image.url :course %>); height: 400px;">
+                <div class='clearfix'>
+                  <div class="right">
+                    <% if can? :manage, course  %>
+                      <%= link_to 'Edit', edit_course_path(course), class: 'label primary tiny', remote: true %></li>
+                      <%= link_to 'Delete', course, method: :delete, class: 'label primary tiny' %></li>
+                    <% end %>
+                  </div><!-- right -->
+                </div><!-- clearfix -->
+                <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
+                  <div>
+                    <%= link_to course.name, course_path(course), class: 'label primary tiny', style: 'font-size: 1.5em' %>
+                    </br>
+                    <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
+                  </div>
+                </div><!-- position: fixed -->
+              </div><!-- panel -->
+            <% end %><!-- link_to do block -->
+          </div><!-- box -->
+        <% end %><!-- @courses do block -->
+      </div><!-- pins -->
+      <div id="course-form" style="display:none;"></div>
+      <div id="course_edit-form" style="display:none;"></div>
     <% end %>
-  <% end %>
-</div>
+  </div><!-- large 12 -->
 
   <!-- Lists all Courses the user is subscibed to -->
-<div class="large-10 large-centered columns">
-  
-  <h3 style="margin-top: 25px;">Courses You're Taking</h3>
-  <hr><!-- horizontal line -->
+  <div class="large-12 large-centered columns">
+    
+    <h3 style="margin-top: 25px;">Courses You're Taking</h3>
+    <hr><!-- horizontal line -->
 
-  <div id="drips" class="transitions-enabled">
-    <div class="vox">
-      <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
-        <%= link_to fa_icon("plus-circle 5x"), courses_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;" %>
-      </div><!-- panel-dashed -->
-    </div><!-- dashed-block -->
-    <% current_user.courses.each do |course| %>
+    <div id="drips" class="transitions-enabled">
       <div class="vox">
-        <%= link_to course_path(course) do %>
-          <div class="panel" style="background-image: url(<%= course.image.url %>); height: 400px;">
-            <div class='clearfix'>
-              <div class="right">
-                <% if course.users.include?(current_user) %>
-                  <%= link_to "unsubscribe", subscribe_path(id: course.id), method: :delete, class: 'label primary tiny'%>
-                <% else %>
-                  <%= link_to "Subscribe", subscribes_path(course_id: course.id), method: :post, class: 'label primary tiny'%>
-                <% end %>
-              </div><!-- right -->
-            </div><!-- clearfix -->
-            <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
-              <div>
-                <span class="label primary" style="font-size: 1.5em;"><%= course.name %></span>
-                <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
-              </div>
-            </div><!-- position absolute -->                 
-          </div><!-- panel -->
-        <% end %><!-- link_to course do block -->
-      </div><!-- vox -->
-    <% end %><!-- current_user do block -->
-  </div><!-- drips -->
-</div><!-- large-10 -->
+        <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px; height: 400px;">
+        <%= link_to fa_icon("plus-circle 5x"), courses_path, style: "color: #00ade5; position: absolute; top: 40%; left: 40%;" %>
+        </div><!-- panel-dashed -->
+      </div><!-- dashed-block -->
+      <% current_user.courses.each do |course| %>
+        <div class="vox">
+            <div class="panel" style="background-image: url(<%= course.image.url :course %>); height: 400px;">
+              <div class='clearfix'>
+                <div class="right">
+                  <div id="subscribe-<%= course.id %>">
+                  <%= render partial: 'courses/subscribe_btn', locals: {course: course} %>
+                  </div>
+                </div><!-- right -->
+              </div><!-- clearfix -->
+              <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
+                <div>
+                  <%= link_to course.name, course_path(course), class: 'label primary tiny', style: 'font-size: 1.5em' %>
+                  </br>
+                  <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
+                </div>
+              </div><!-- position absolute -->                 
+            </div><!-- panel -->
+        </div><!-- vox -->
+      <% end %><!-- current_user do block -->
+    </div><!-- drips -->
+  </div><!-- large-12 -->
+</div><!-- row -->
 
 
-<% if current_user.courses.present? == false %>
-  <p>You haven't subscribed to any courses yet ya silly goose! Check out our <%= link_to "courses", courses_path %></p>
-<% end %>
 
-<script>
-$(document).ready(function(){
-  $('#hideme').hide();
-  $('#hideme1').hide();
-  $('#nextnext').click(function(){
-    $('#hideme').show();
-    // $('#hideme1').show();
-    $('#nextnext').hide();
-    $('#nextnext1').show();
-    // $('#measurements').hide();
-    $('#submit').show();
-  });
-  $('#nextnext1').click(function(){
-    $('#hideme').hide();
-    $('#measurements').hide();
-    $('#hideme1').show();
-  });
-});
-</script>
 
