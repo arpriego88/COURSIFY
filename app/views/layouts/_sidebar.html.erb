@@ -1,4 +1,4 @@
-<ul class="side-nav" style="position: fixed;">
+<ul class="side-nav"  style="position: fixed;">
   <li><h4 class="text-center"><%= link_to @course.name, course_path(@course) %></h4></li>
   <% @course.lessons.reverse.each do |l| %>
     <%= link_to course_lesson_path(@course, l) do %>

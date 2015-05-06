@@ -1,5 +1,6 @@
 $('#<%= "stats-#{@lesson.id}" %>' ).html( '<%= j render partial: 'heat_map' %> <span class="button close-stats" >Close</span>' ).slideDown();
+$('#statsBtn<%=@lesson.id%>').html('Stats');
 $('.close-stats').click(function(){
-  $('#<%= "stats-#{@lesson.id}" %>').removeProp("data-disable-with").prop('value', 'Stats');
+  // $('#<%= "stats-#{@lesson.id}" %>').removeProp("data-disable-with").prop('value', 'Stats');
   $(this).parent().slideUp();
 });
