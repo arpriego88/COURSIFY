@@ -47,23 +47,16 @@
       <% @counter += 1 %>
     <% end %>
     <% if can? :manage, @course %>
-      <%= link_to new_course_lesson_path(@course), remote: true do %>
+
+      <%= link_to new_course_lesson_path(@course), remote: true  do %>
         <div class="panel" style="text-align: center; border-style: dashed; border-color: #00ade5; border-width: 3px;">
           <i class="fa fa-plus-circle fa-1x" style="color: #00ade5;"></i>
         </div><!-- panel-dashed -->
       <% end %><!-- link_to do block -->
     <% end %>
 
-    <div id="lesson-form" style="display:none;"></div>
+    <div id="lesson-form" style="display: none;"></div>
+
 
 </div><!-- columns -->
 
-
-<script>
-// $(document).ready(function(){
-//   $(".expandable").click(function(e) {
-//     e.preventDefault();
-//     $($(this).attr('href')).toggle( "fast" );
-//   });
-// });
-</script>
