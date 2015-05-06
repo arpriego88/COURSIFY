@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   private
 
   def email_user
-    UserMailer.user_welcome(self).deliver 
+    UserMailer.user_welcome(self).deliver_now 
   end
   
 
