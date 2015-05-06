@@ -22,6 +22,7 @@ gem 'paperclip', '~> 4.2'
 gem 'omniauth-twitter'
 gem 'stripe'
 gem 'masonry-rails'
+gem 'aws-sdk', '< 2.0'
 
 
 group :doc do
