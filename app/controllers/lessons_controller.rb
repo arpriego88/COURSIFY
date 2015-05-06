@@ -17,7 +17,7 @@ class LessonsController < ApplicationController
   end
 
   def new
-    @lesson = @course.lessons.new
+    @lesson = @course.lessons.build
   end
 
   def create

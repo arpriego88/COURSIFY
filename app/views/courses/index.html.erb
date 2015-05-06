@@ -8,7 +8,7 @@
       <% @courses.each do |course| %>
         <div class="vox">
           <%= link_to course_path(course) do %>
-            <div class="panel" style="background-image: url(<%= course.image.url %>); height: 400px;">
+            <div class="panel" style="background-image: url(<%= course.image.url :course %>); height: 400px;">
               <div class='clearfix'>
                 <div class="right">
                   <div id="subscribe-<%= course.id %>">
@@ -19,6 +19,7 @@
               <div style="position: absolute; bottom: 0; margin-bottom: 20px;">
                 <div>
                   <%= link_to course.name, course_path(course), class: 'label primary tiny', style: 'font-size: 1.5em' %>
+                  </br>
                   <span class="label primary"><%=h truncate(course.description, length: 55) %></span>
                 </div>
               </div><!-- position absolute -->                 
